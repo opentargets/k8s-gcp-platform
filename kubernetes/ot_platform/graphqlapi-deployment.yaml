@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphqlapi-platform
+  labels:
+    app: graphqlapi-platform
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphqlapi-platform
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: graphqlapi-platform
+        tier: backend
+    spec:
+      containers:
+      - name: graphqlapi-platform
+        image: quay.io/opentargets/platform-api:24.0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
