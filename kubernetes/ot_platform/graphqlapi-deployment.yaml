@@ -24,3 +24,22 @@ spec:
         ports:
         - containerPort: 8080
           name: gqlapi-port
+        env:
+        - name: SLICK_CLICKHOUSE_URL
+          value: "jdbc:clickhouse://ch-platform:9000"
+        - name: ELASTICSEARCH_HOST
+          value: "os-platform"
+        - name: META_APIVERSION_MAJOR
+          value: "0"
+        - name: META_APIVERSION_MINOR
+          value: "0"
+        - name: META_APIVERSION_PATCH
+          value: "0"
+        - name: META_DATA_YEAR
+          value: "23"
+        - name: META_DATA_MONTH
+          value: "6"
+        - name: META_DATA_ITERATION
+          value: "0"
+        - name: PLATFORM_API_IGNORE_CACHE
+          value: "true"
