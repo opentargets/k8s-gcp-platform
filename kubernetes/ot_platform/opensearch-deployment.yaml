@@ -23,9 +23,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9200
-          name: os-port-secondary
+          name: os-port-b
         - containerPort: 9300
-          name: os-port-primary
+          name: os-port-a
         env:
         - name: cluster.name
           value: "os-platform"

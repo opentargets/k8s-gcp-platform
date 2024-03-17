@@ -12,7 +12,7 @@ spec:
   ports:
   - protocol: TCP
     port: 9200
-    name: os-port-secondary
+    name: os-port-b
   - protocol: TCP
     port: 9300
-    name: os-port-primary
+    name: os-port-a

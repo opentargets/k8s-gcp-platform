@@ -12,7 +12,7 @@ spec:
   ports:
   - protocol: TCP
     port: 8123
-    name: ch-port-secondary
+    name: ch-port-b
   - protocol: TCP
     port: 9000
-    name: ch-port-primary
+    name: ch-port-a
