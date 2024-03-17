@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        tier: backend
+    spec:
+      containers:
+      - name: helloworld
+        image: nginx:latest
+        ports:
+        - containerPort: 80
