@@ -20,5 +20,6 @@ spec:
       containers:
       - name: helloworld
         image: nginx:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
