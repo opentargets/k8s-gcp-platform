@@ -23,4 +23,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8123
+          name: ch-port-secondary
         - containerPort: 9000
+          name: ch-port-primary
