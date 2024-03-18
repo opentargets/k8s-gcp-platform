@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: openaiapi-platform
-        image: openaiapi:latest
+        image: quay.io/opentargets/ot-ai-api:0.0.10
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
