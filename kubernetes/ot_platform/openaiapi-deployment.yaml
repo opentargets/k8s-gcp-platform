@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openaiapi-platform
+  labels:
+    app: openaiapi-platform
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openaiapi-platform
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: openaiapi-platform
+        tier: backend
+    spec:
+      containers:
+      - name: openaiapi-platform
+        image: openaiapi:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: openaiapi-port
