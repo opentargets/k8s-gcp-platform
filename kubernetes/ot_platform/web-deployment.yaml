@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-platform
+  labels:
+    app: web-platform
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-platform
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: web-platform
+        tier: frontend
+    spec:
+      containers:
+      - name: web-platform
+        #image: macbre/nginx-http3:1.23.4
+        image: nginx:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: web-port
