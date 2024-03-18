@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openaiapi-platform
+  labels:
+    app: openaiapi-platform
+    tier: backend
+spec:
+  selector:
+    app: openaiapi-platform
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 8080
+    name: openaiapi-port
