@@ -6,14 +6,14 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: ot-platform-dev
-    server: https://kubernetes.default.svc
-  project: ot-platform
+  project: default
   source:
     repoURL: https://github.com/opentargets/k8s-gcp-platform.git
     targetRevision: development
     path: kubernetes/oververlays/development
+  destination:
+    namespace: ot-platform-dev
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
