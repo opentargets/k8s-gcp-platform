@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ot-platform-dev
-  namespace: ot-platform-dev
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
