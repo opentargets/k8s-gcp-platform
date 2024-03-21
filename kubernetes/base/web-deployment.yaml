@@ -20,7 +20,7 @@ spec:
       containers:
       - name: web-platform
         #image: macbre/nginx-http3:1.23.4
-        image: nginx:latest
+        image: nginx:1.25.4-alpine3.18-slim
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
