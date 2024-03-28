@@ -5,9 +5,12 @@ resources:
   - clickhouse-service.yaml
   - graphqlapi-deployment.yaml
   - graphqlapi-service.yaml
+  - graphqlapi-service-external.yaml
   - openaiapi-deployment.yaml
   - openaiapi-service.yaml
+  - openaiapi-service-external.yaml
   - opensearch-deployment.yaml
   - opensearch-service.yaml
   - web-deployment.yaml
   - web-service.yaml
+  - web-service-external.yaml
