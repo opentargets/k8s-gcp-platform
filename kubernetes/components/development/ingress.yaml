@@ -44,3 +44,13 @@ spec:
                 name: web-service-external
                 port:
                   number: 80
+    - host: www.platform.dev.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service-external
+                port:
+                  number: 80
