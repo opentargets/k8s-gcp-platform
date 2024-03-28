@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: ManagedCertificate
+metadata:
+  name: ssl-certificate-platform
+spec:
+  domains:
+    - platform.dev.k8s.opentargets.xyz
+    - api.platform.dev.k8s.opentargets.xyz
+    - ai.platform.dev.k8s.opentargets.xyz
+    - www.platform.dev.k8s.opentargets.xyz
