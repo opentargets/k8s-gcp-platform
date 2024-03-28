@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-platform-external
+  labels:
+    app: web-platform
+    tier: external
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: web-port
+  selector:
+    app: web-platform
+    tier: frontend
+  type: NodePort
