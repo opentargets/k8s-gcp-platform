@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openaiapi-platform-external
+  labels:
+    app: openaiapi-platform
+    tier: external
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    name: openaiapi-port
+  selector:
+    app: openaiapi-platform
+    tier: backend
+  type: NodePort
