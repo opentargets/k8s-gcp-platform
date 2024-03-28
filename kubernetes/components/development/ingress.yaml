@@ -5,10 +5,12 @@ metadata:
   labels:
     app: ot-platform
     tier: external
+  annotations:
+    kubernetes.io/ingress.class: "gce"
 spec:
   defaultBackend:
     service:
-      name: web-service
+      name: web-service-external
       port:
         number: 80
   rules:
