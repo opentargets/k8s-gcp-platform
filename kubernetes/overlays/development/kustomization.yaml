@@ -3,6 +3,7 @@ kind: Kustomization
 
 components:
   - ../../components/development
-  
+  - ../../components/https-ingress
+
 bases:
   - ../../base
