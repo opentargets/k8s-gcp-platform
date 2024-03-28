@@ -12,4 +12,33 @@ spec:
       port:
         number: 80
   rules:
-  - host: platform.dev.k8s.opentargets.xyz
+    - host: api.platform.dev.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: graphqlapi-service-external
+                port:
+                  number: 80
+    - host: ai.platform.dev.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openaiapi-service-external
+                port:
+                  number: 80
+    - host: platform.dev.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service-external
+                port:
+                  number: 80
