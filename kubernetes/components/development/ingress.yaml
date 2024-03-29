@@ -12,7 +12,7 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: web-service-external
+      name: web-platform-external
       port:
         number: 80
   rules:
