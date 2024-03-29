@@ -23,7 +23,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: graphqlapi-service-external
+                name: graphqlapi-platform-external
                 port:
                   number: 80
     - host: ai.platform.dev.k8s.opentargets.xyz
@@ -33,7 +33,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: openaiapi-service-external
+                name: openaiapi-platform-external
                 port:
                   number: 80
     - host: platform.dev.k8s.opentargets.xyz
@@ -43,7 +43,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: web-service-external
+                name: web-platform-external
                 port:
                   number: 80
     - host: www.platform.dev.k8s.opentargets.xyz
@@ -53,6 +53,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: web-service-external
+                name: web-platform-external
                 port:
                   number: 80
