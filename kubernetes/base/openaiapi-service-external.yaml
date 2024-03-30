@@ -9,7 +9,8 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    name: openaiapi-port
+    targetPort: openaiapi-port
+    name: openaiapi-port-svc-external
   selector:
     app: openaiapi-platform
     tier: backend
