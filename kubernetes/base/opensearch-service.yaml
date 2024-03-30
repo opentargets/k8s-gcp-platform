@@ -12,7 +12,9 @@ spec:
   ports:
   - protocol: TCP
     port: 9200
-    name: os-port-b
+    targetPort: os-port-b
+    name: os-port-b-svc
   - protocol: TCP
     port: 9300
-    name: os-port-a
+    targetPort: os-port-a
+    name: os-port-a-svc
