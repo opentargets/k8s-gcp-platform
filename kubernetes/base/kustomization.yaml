@@ -2,16 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - clickhouse-deployment.yaml
-  - clickhouse-service.yaml
-  - graphqlapi-deployment.yaml
-  - graphqlapi-service.yaml
-  - graphqlapi-service-external.yaml
-  - openaiapi-deployment.yaml
-  - openaiapi-service.yaml
-  - openaiapi-service-external.yaml
-  - opensearch-deployment.yaml
-  - opensearch-service.yaml
-  - web-deployment.yaml
-  - web-service.yaml
-  - web-service-external.yaml
+  - clickhouse/clickhouse-deployment.yaml
+  - clickhouse/clickhouse-service.yaml
+  - graphqlapi/graphqlapi-deployment.yaml
+  - graphqlapi/graphqlapi-service.yaml
+  - graphqlapi/graphqlapi-service-external.yaml
+  - openaiapi/openaiapi-deployment.yaml
+  - openaiapi/openaiapi-service.yaml
+  - openaiapi/openaiapi-service-external.yaml
+  - opensearch/opensearch-deployment.yaml
+  - opensearch/opensearch-service.yaml
+  - web/web-deployment.yaml
+  - web/web-service.yaml
+  - web/web-service-external.yaml
