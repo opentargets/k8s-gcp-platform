@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: platform-pv-clickhouse
+  labels:
+    app: clickhouse
+    tier: storage
+spec:
+  storageClassName: premium-rwo
+  capacity:
+    storage: 128Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    name: platform-pvc-source-clickhouse
+  csi:
+    driver: pd.csi.storage.gke.io
+    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/mbdev-gke-ch
+    fsType: ext4
