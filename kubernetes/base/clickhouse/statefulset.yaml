@@ -29,15 +29,6 @@ spec:
           name: ch-port-a
         volumeMounts:
           - name: platform-ch
-            subPath: data
-            mountPath: /var/lib/clickhouse
-          - name: platform-ch
-            subPath: config.d
-            mountPath: /etc/clickhouse-server/config.d
-          - name: platform-ch
-            subPath: users.d
-            mountPath: /etc/clickhouse-server/users.d
-          - name: platform-ch
             mountPath: /data_volume
   volumeClaimTemplates:
   - metadata:
@@ -47,7 +38,6 @@ spec:
         tier: storage
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: ssd-small
       resources:
         requests:
           storage: 64Gi

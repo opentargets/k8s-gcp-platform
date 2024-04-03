@@ -26,3 +26,10 @@ spec:
           name: ch-port-b
         - containerPort: 9000
           name: ch-port-a
+        volumeMounts:
+          - name: disk-clickhouse
+            mountPath: /data_volume
+      volumes:
+      - name: disk-clickhouse
+        persistentVolumeClaim:
+          claimName: platform-pvc-source-clickhouse
