@@ -43,3 +43,10 @@ spec:
           value: "DEBUG"
         - name: OPENSEARCH_JAVA_OPTS
           value: "-Xms2g -Xmx4g"
+        volumeMounts:
+          - name: disk-opensearch
+            mountPath: /usr/share/opensearch/data
+      volumes:
+      - name: disk-opensearch
+        persistentVolumeClaim:
+          claimName: platform-opensearch
