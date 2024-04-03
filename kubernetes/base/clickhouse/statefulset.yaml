@@ -27,3 +27,31 @@ spec:
           name: ch-port-b
         - containerPort: 9000
           name: ch-port-a
+        volumeMounts:
+          - name: platform-ch
+            subPath: data
+            mountPath: /var/lib/clickhouse
+          - name: platform-ch
+            subPath: config.d
+            mountPath: /etc/clickhouse-server/config.d
+          - name: platform-ch
+            subPath: users.d
+            mountPath: /etc/clickhouse-server/users.d
+          - name: platform-ch
+            mountPath: /data_volume
+  volumeClaimTemplates:
+  - metadata:
+      name: platform-ch
+      labels:
+        app: clickhouse
+        tier: storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: ssd-small
+      resources:
+        requests:
+          storage: 64Gi
+      dataSource:
+        kind: PersistentVolumeClaim
+        name: platform-pvc-source-clickhouse
+        apiGroup: ""
