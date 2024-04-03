@@ -45,8 +45,18 @@ spec:
           value: "-Xms2g -Xmx4g"
         volumeMounts:
           - name: disk-opensearch
+            subPath: data
             mountPath: /usr/share/opensearch/data
       volumes:
       - name: disk-opensearch
         persistentVolumeClaim:
           claimName: platform-opensearch
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions: # schedule this where the GCE disk is
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - europe-west1-d
