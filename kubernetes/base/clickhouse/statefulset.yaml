@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ch-platform
+  labels:
+    app: ch-platform
+    tier: backend
+spec:
+  serviceName: ch-platform
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ch-platform
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: ch-platform
+        tier: backend
+    spec:
+      containers:
+      - name: ch-platform
+        image: clickhouse/clickhouse-server:23.3.1.2823
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8123
+          name: ch-port-b
+        - containerPort: 9000
+          name: ch-port-a
