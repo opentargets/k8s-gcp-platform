@@ -39,6 +39,15 @@ spec:
           - name: platform-ch
             subPath: config.d
             mountPath: /etc/clickhouse-server/config.d
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions: # schedule this where the GCE disk is
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - europe-west1-d
   volumeClaimTemplates:
   - metadata:
       name: platform-ch
