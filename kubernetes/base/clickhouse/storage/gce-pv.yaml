@@ -6,9 +6,9 @@ metadata:
     app: clickhouse
     tier: storage
 spec:
-  storageClassName: premium-rwo
+  storageClassName: ssd-small
   capacity:
-    storage: 128Gi
+    storage: 64Gi
   accessModes:
     - ReadWriteOnce
   claimRef:
