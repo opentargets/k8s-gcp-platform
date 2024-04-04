@@ -26,7 +26,7 @@ spec:
           name: gqlapi-port
         env:
         - name: SLICK_CLICKHOUSE_URL
-          value: "jdbc:ch-platform://ch-platform:9000"
+          value: "jdbc:clickhouse://ch-platform:9000"
         - name: ELASTICSEARCH_HOST
           value: "os-platform"
         - name: META_APIVERSION_MAJOR
