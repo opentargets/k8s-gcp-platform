@@ -8,3 +8,13 @@ output "platform_ch_disks" {
   ]
 }
 
+// Listing of deployed Platform OpenSearch disks with zones
+output "platform_os_disks" {
+  value = [
+    for idx in range(length(google_compute_disk.platform_os_disk[*])) : {
+        name = google_compute_disk.platform_os_disk[idx].name
+        zone = google_compute_disk.platform_os_disk[idx].zone
+    }
+  ]
+}
+
