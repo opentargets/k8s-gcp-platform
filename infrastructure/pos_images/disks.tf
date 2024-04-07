@@ -47,3 +47,28 @@ resource "google_compute_disk" "platform_os_disk" {
   size  = var.disk_size_platform_os
   zone  = local.platform_images_list_os_with_zones[count.index].zone
 }
+
+// PPP Clickhouse disks
+// Random resource to keep the disk name unique
+resource "random_string" "disk_suffix_ppp_ch" {
+    count = length(local.ppp_images_list_ch_with_zones)
+
+  length  = 8
+  lower   = true
+  upper   = false
+  special = false
+  keepers = {
+    image = local.ppp_images_list_ch_with_zones[count.index].image
+    zone  = local.ppp_images_list_ch_with_zones[count.index].zone
+  }
+}
+// Disk resource
+resource "google_compute_disk" "ppp_ch_disk" {
+  count = length(local.ppp_images_list_ch_with_zones)
+  project = var.project
+
+  name  = "${var.scope}-ppp-ch-disk-${random_string.disk_suffix_ppp_ch[count.index].result}"
+  type  = "pd-balanced"
+  size  = var.disk_size_ppp_ch
+  zone  = local.ppp_images_list_ch_with_zones[count.index].zone
+}
