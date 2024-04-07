@@ -21,3 +21,14 @@ variable "project" {
   default     = "open-targets-eu-dev"
 }
 
+// Images configuration
+variable "folder_context" {
+  description = "Folder that defines the context for the images being deployed"
+    type        = string
+}
+
+variable "file_images_platform" {
+  description = "File name that contains the list of images to be deployed for Platform, default is 'images_platform.txt'"
+  type = string
+  default = "images_platform.txt"
+}
