@@ -24,17 +24,17 @@ variable "project" {
 // Images configuration
 variable "folder_context" {
   description = "Folder that defines the context for the images being deployed"
-    type        = string
+  type        = string
 }
 
 variable "file_images_platform" {
   description = "File name that contains the list of images to be deployed for Platform, default is 'images_platform.txt'"
-  type = string
-  default = "images_platform.txt"
+  type        = string
+  default     = "images_platform.txt"
 }
 
 variable "file_images_ppp" {
   description = "File name that contains the list of images to be deployed for PPP, default is 'images_ppp.txt'"
-  type = string
-  default = "images_ppp.txt"
+  type        = string
+  default     = "images_ppp.txt"
 }
