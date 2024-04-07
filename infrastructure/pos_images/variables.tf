@@ -32,3 +32,9 @@ variable "file_images_platform" {
   type = string
   default = "images_platform.txt"
 }
+
+variable "file_images_ppp" {
+  description = "File name that contains the list of images to be deployed for PPP, default is 'images_ppp.txt'"
+  type = string
+  default = "images_ppp.txt"
+}
