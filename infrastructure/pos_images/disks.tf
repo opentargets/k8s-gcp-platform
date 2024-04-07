@@ -72,3 +72,28 @@ resource "google_compute_disk" "ppp_ch_disk" {
   size  = var.disk_size_ppp_ch
   zone  = local.ppp_images_list_ch_with_zones[count.index].zone
 }
+
+// PPP Open Search disks
+// Random resource to keep the disk name unique
+resource "random_string" "disk_suffix_ppp_os" {
+    count = length(local.ppp_images_list_os_with_zones)
+
+  length  = 8
+  lower   = true
+  upper   = false
+  special = false
+  keepers = {
+    image = local.ppp_images_list_os_with_zones[count.index].image
+    zone  = local.ppp_images_list_os_with_zones[count.index].zone
+  }
+}
+// Disk resource
+resource "google_compute_disk" "ppp_os_disk" {
+  count = length(local.ppp_images_list_os_with_zones)
+  project = var.project
+
+  name  = "${var.scope}-ppp-os-disk-${random_string.disk_suffix_ppp_os[count.index].result}"
+  type  = "pd-balanced"
+  size  = var.disk_size_ppp_os
+  zone  = local.ppp_images_list_os_with_zones[count.index].zone
+}
