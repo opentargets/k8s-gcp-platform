@@ -28,3 +28,12 @@ output "ppp_ch_disks" {
   ]
 }
 
+// Listing of deployed PPP OpenSearch disks with zones
+output "ppp_os_disks" {
+  value = [
+    for idx in range(length(google_compute_disk.ppp_os_disk[*])) : {
+        name = google_compute_disk.ppp_os_disk[idx].name
+        zone = google_compute_disk.ppp_os_disk[idx].zone
+    }
+  ]
+}
