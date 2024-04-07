@@ -18,3 +18,13 @@ output "platform_os_disks" {
   ]
 }
 
+// Listing of deployed PPP Clickhouse disks with zones
+output "ppp_ch_disks" {
+  value = [
+    for idx in range(length(google_compute_disk.ppp_ch_disk[*])) : {
+        name = google_compute_disk.ppp_ch_disk[idx].name
+        zone = google_compute_disk.ppp_ch_disk[idx].zone
+    }
+  ]
+}
+
