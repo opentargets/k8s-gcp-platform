@@ -38,3 +38,16 @@ variable "file_images_ppp" {
   type        = string
   default     = "images_ppp.txt"
 }
+
+variable "platform_zones" {
+  description = "Zones for deploying platform images, default is ['europe-west1-b', 'europe-west1-c', 'europe-west1-d']"
+  type        = list(string)
+  default     = ["europe-west1-b", "europe-west1-c", "europe-west1-d"]
+}
+
+variable "ppp_zones" {
+  description = "Zones for deploying ppp images, default is ['europe-west1-b', 'europe-west1-c', 'europe-west1-d']"
+  type        = list(string)
+  default     = ["europe-west1-b", "europe-west1-c", "europe-west1-d"]
+  
+}
