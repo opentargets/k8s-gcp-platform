@@ -28,3 +28,9 @@ manage <environment> list_images <product>
 manage <environment> deploy_disks <product>
 manage <environment> destroy_disks <product>
 
+# Validate the number of arguments
+if [ "$#" -lt 3 ]; then
+    echo "Usage: manage <environment> <command> <product> [image_name]"
+    exit 1
+fi
+
