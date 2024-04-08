@@ -1,6 +1,9 @@
 locals {
+  // Compute the root path for the active environment
+  path_root_active_environment = "${var.folder_environments}/${var.environment}"
+  
   // Platform images for Clickhouse
-  path_platform_images_file_ch = "${var.folder_context}/${var.file_images_platform_ch}"
+  path_platform_images_file_ch = "${local.path_root_active_environment}/${var.file_images_platform_ch}"
   platform_images_raw_ch       = split("\n", file("${path.module}/${path_platform_images_file_ch}"))
   platform_images_idx_start_ch = length(local.platform_images_raw_ch) <= 3 ? 0 : length(local.platform_images_raw_ch) - 3
   // This is the effective listing of platform Clickhouse images to deploy
@@ -14,7 +17,7 @@ locals {
     ]
   ])
   // Platform images for OpenSearch
-  path_platform_images_file_os = "${var.folder_context}/${var.file_images_platform_os}"
+  path_platform_images_file_os = "${local.path_root_active_environment}/${var.file_images_platform_os}"
   platform_images_raw_os       = split("\n", file("${path.module}/${path_platform_images_file_os}"))
   platform_images_idx_start_os = length(local.platform_images_raw_os) <= 3 ? 0 : length(local.platform_images_raw_os) - 3
   // This is the effective listing of platform OpenSearch images to deploy
@@ -29,7 +32,7 @@ locals {
     ])
 
   // PPP images for Clickhouse
-  path_ppp_images_file_ch = "${var.folder_context}/${var.file_images_ppp_ch}"
+  path_ppp_images_file_ch = "${local.path_root_active_environment}/${var.file_images_ppp_ch}"
   ppp_images_raw_ch       = split("\n", file("${path.module}/${path_ppp_images_file_ch}"))
   ppp_images_idx_start_ch = length(local.ppp_images_raw_ch) <= 3 ? 0 : length(local.ppp_images_raw_ch) - 3
   // This is the effective listing of PPP Clickhouse images to deploy
@@ -43,7 +46,7 @@ locals {
         ]
     ])
   // PPP images for OpenSearch
-  path_ppp_images_file_os = "${var.folder_context}/${var.file_images_ppp_os}"
+  path_ppp_images_file_os = "${local.path_root_active_environment}/${var.file_images_ppp_os}"
   ppp_images_raw_os       = split("\n", file("${path.module}/${path_ppp_images_file_os}"))
   ppp_images_idx_start_os = length(local.ppp_images_raw_os) <= 3 ? 0 : length(local.ppp_images_raw_os) - 3
   // This is the effective listing of PPP OpenSearch images to deploy
