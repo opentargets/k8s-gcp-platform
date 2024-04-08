@@ -40,3 +40,8 @@ command=$2
 product=$3
 image_name=$4
 
+# Validate product
+if [[ "$product" != "platform" && "$product" != "ppp" ]]; then
+    echo "Invalid product. Must be 'platform' or 'ppp'."
+    exit 1
+fi
