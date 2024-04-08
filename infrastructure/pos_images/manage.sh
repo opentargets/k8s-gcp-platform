@@ -155,3 +155,32 @@ deploy_disks() {
         exit 1
     fi
 }
+
+# Function to destroy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+destroy_disks() {
+    local path_tf_context="${folder_environments}/${environment}/${tf_context_file_name}"
+
+    # Init Terraform, exit if it fails
+    log "Initializing Terraform..."
+    terraform init
+    if [ $? -ne 0 ]; then
+        error "Failed to initialize Terraform."
+        exit 1
+    fi
+
+    # Switch to the workspace with the name that matches the environment
+    log "Switching to the workspace '${environment}'..."
+    terraform workspace select "${environment}"
+    if [ $? -ne 0 ]; then
+        error "Failed to switch to the workspace."
+        exit 1
+    fi
+
+    # Destroy the disks
+    log "Destroying disks..."
+    terraform destroy -var-file="${path_tf_context}" -auto-approve
+    if [ $? -ne 0 ]; then
+        error "Failed to destroy disks."
+        exit 1
+    fi
+}
