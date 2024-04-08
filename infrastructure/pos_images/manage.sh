@@ -38,9 +38,9 @@ if [ "$#" -lt 3 ]; then
     echo "  add_image <product> <image_type> <image_name>"
     echo "  remove_image <product> <image_type> <image_name>"
     echo "  pop_image <product> <image_type>"
-    echo "  list_images <product>"
-    echo "  deploy_disks <product>"
-    echo "  destroy_disks <product>"
+    echo "  list_images <product> <image_type>"
+    echo "  deploy_disks"
+    echo "  destroy_disks"
     echo ""
     echo "Products:"
     echo "  platform"
@@ -61,16 +61,17 @@ image_name=$5
 
 # Validate product
 if [[ "$product" != "platform" && "$product" != "ppp" ]]; then
-    echo "Invalid product. Must be 'platform' or 'ppp'."
+    error "Invalid product. Must be 'platform' or 'ppp'."
     exit 1
 fi
 
-# Validate image type, it must be either 'clickhouse' or 'opensearch'
-if [[ "$image_type" != "clickhouse" && "$image_type" != "opensearch" ]]; then
-    echo "Invalid image type. Must be 'clickhouse' or 'opensearch'."
-    exit 1
+# Validate image type, it must be either 'clickhouse' or 'opensearch', unless the command is 'deploy_disks' or 'destroy_disks'
+if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
+    if [[ "$image_type" != "clickhouse" && "$image_type" != "opensearch" ]]; then
+        error "Invalid image type. Must be 'clickhouse' or 'opensearch'."
+        exit 1
+    fi
 fi
-
 # Function to add an image to the list
 add_image() {
     local image_file=$1
