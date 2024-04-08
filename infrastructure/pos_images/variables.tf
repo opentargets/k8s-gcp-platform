@@ -23,8 +23,9 @@ variable "project" {
 
 // Images configuration
 variable "folder_context" {
-  description = "Folder that defines the context for the images being deployed"
+  description = "Folder location for the different contexts, e.g. dev, staging, production, default 'environments'"
   type        = string
+  default = "environments"
 }
 
 variable "file_images_platform_ch" {
