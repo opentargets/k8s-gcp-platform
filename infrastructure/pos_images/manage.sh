@@ -34,3 +34,9 @@ if [ "$#" -lt 3 ]; then
     exit 1
 fi
 
+# Command line parameters
+environment=$1
+command=$2
+product=$3
+image_name=$4
+
