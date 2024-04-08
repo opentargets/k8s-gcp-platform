@@ -22,10 +22,16 @@ variable "project" {
 }
 
 // Images configuration
-variable "folder_context" {
+variable "folder_environments" {
   description = "Folder location for the different contexts, e.g. dev, staging, production, default 'environments'"
   type        = string
   default = "environments"
+}
+
+variable "environment" {
+  description = "Environment to use for deploying resources, default is 'development"
+  type        = string
+  default     = "development"  
 }
 
 variable "file_images_platform_ch" {
