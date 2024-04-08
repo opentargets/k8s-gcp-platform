@@ -107,3 +107,21 @@ pop_image() {
         exit 1
     fi
 }
+
+# Function to list images
+list_images() {
+    local image_file=$1
+
+    if [ -f "$image_file" ]; then
+        if [ -s "$image_file" ]; then
+            log "Images:"
+            cat "$image_file"
+        else
+            error "Image list is empty."
+            exit 1
+        fi
+    else
+        error "Image file not found."
+        exit 1
+    fi
+}
