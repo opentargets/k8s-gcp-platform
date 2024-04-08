@@ -21,4 +21,10 @@ platform_image_file_opensearch="images_platform_os.txt"
 ppp_image_file_clickhouse="images_ppp_ch.txt"
 ppp_image_file_opensearch="images_ppp_os.txt"
 
+# Sample commands
+manage <environment> add_image <product> <image_name>
+manage <environment> remove_image <product> <image_name>
+manage <environment> list_images <product>
+manage <environment> deploy_disks <product>
+manage <environment> destroy_disks <product>
 
