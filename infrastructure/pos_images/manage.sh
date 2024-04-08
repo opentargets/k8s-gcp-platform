@@ -33,6 +33,22 @@ ppp_image_file_opensearch="images_ppp_os.txt"
 # Validate the number of arguments
 if [ "$#" -lt 3 ]; then
     echo "Usage: manage <environment> <command> <product> [image_name]"
+    echo ""
+    echo "Commands:"
+    echo "  add_image <product> <image_type> <image_name>"
+    echo "  remove_image <product> <image_type> <image_name>"
+    echo "  pop_image <product> <image_type>"
+    echo "  list_images <product>"
+    echo "  deploy_disks <product>"
+    echo "  destroy_disks <product>"
+    echo ""
+    echo "Products:"
+    echo "  platform"
+    echo "  ppp"
+    echo ""
+    echo "Image types:"
+    echo "  clickhouse"
+    echo "  opensearch"
     exit 1
 fi
 
