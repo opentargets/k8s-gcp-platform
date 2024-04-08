@@ -89,3 +89,21 @@ remove_image() {
     fi
 }
 
+# Function to pop an image from the list, which removes the first image from the list, if the list is not empty
+pop_image() {
+    local image_file=$1
+
+    if [ -f "$image_file" ]; then
+        if [ -s "$image_file" ]; then
+            local image_name=$(head -n 1 "$image_file")
+            sed -i "1d" "$image_file"
+            log "Image popped from the list: $image_name"
+        else
+            error "Image list is empty."
+            exit 1
+        fi
+    else
+        error "Image file not found."
+        exit 1
+    fi
+}
