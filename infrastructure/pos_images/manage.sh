@@ -16,6 +16,7 @@ error () {
 
 # Global variables
 folder_environments="${SCRIPT_DIR}/environments"
+tf_context_file_name="context.tfvars"
 platform_image_file_clickhouse="images_platform_ch.txt"
 platform_image_file_opensearch="images_platform_os.txt"
 ppp_image_file_clickhouse="images_ppp_ch.txt"
@@ -122,6 +123,35 @@ list_images() {
         fi
     else
         error "Image file not found."
+        exit 1
+    fi
+}
+
+# Function to deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+deploy_disks() {
+    local path_tf_context="${folder_environments}/${environment}/${tf_context_file_name}"
+
+    # Init Terraform, exit if it fails
+    log "Initializing Terraform..."
+    terraform init
+    if [ $? -ne 0 ]; then
+        error "Failed to initialize Terraform."
+        exit 1
+    fi
+
+    # Switch to the workspace with the name that matches the environment
+    log "Switching to the workspace '${environment}'..."
+    terraform workspace select "${environment}"
+    if [ $? -ne 0 ]; then
+        error "Failed to switch to the workspace."
+        exit 1
+    fi
+
+    # Deploy the disks
+    log "Deploying disks..."
+    terraform apply -var-file="${path_tf_context}" -auto-approve
+    if [ $? -ne 0 ]; then
+        error "Failed to deploy disks."
         exit 1
     fi
 }
