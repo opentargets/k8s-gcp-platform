@@ -70,3 +70,22 @@ add_image() {
     log "Image added to the list."
 }
 
+# Function to remove an image from the list
+remove_image() {
+    local image_file=$1
+    local image_name=$2
+
+    if [ -f "$image_file" ]; then
+        if grep -q "$image_name" "$image_file"; then
+            sed -i "/$image_name/d" "$image_file"
+            log "Image removed from the list."
+        else
+            error "Image not found in the list."
+            exit 1
+        fi
+    else
+        error "Image file not found."
+        exit 1
+    fi
+}
+
