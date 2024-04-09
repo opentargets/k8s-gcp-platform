@@ -65,3 +65,15 @@ output "platform_os_disks_most_recent" {
     if google_compute_disk.platform_os_disk[idx].image == local.platform_images_most_recent_os
   ]
 }
+
+// Listing of the latest PPP Clickhouse disks deployed, according to the most recent image
+output "ppp_ch_disks_most_recent" {
+  value = [
+    for idx in range(length(google_compute_disk.ppp_ch_disk[*])) : {
+        name = google_compute_disk.ppp_ch_disk[idx].name
+        image = google_compute_disk.ppp_ch_disk[idx].image
+        zone = google_compute_disk.ppp_ch_disk[idx].zone
+    }
+    if google_compute_disk.ppp_ch_disk[idx].image == local.ppp_images_most_recent_ch
+  ]
+}
