@@ -8,6 +8,9 @@ resources:
   - clickhouse/storage/pvc-1.yaml
   - clickhouse/storage/pvc-2.yaml
   - clickhouse/storage/pvc-3.yaml
+  - clickhouse/clickhouse-1.yaml
+  - clickhouse/clickhouse-2.yaml
+  - clickhouse/clickhouse-3.yaml
   - graphqlapi/deployment.yaml
   - graphqlapi/service.yaml
   - graphqlapi/service-external.yaml
