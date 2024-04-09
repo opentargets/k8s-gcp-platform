@@ -17,7 +17,7 @@ locals {
     ]
   ]) : []
   // Platform most recent image for Clickhouse
-  platform_images_most_recent_ch = length(platform_images_list_ch) == 0 ? null : element(platform_images_list_ch, length(platform_images_list_ch) - 1)
+  platform_images_most_recent_ch = length(local.platform_images_list_ch) == 0 ? null : element(local.platform_images_list_ch, length(local.platform_images_list_ch) - 1)
   // Platform images for OpenSearch
   path_platform_images_file_os = "${path.module}/${local.path_root_active_environment}/${var.file_images_platform_os}"
   platform_images_raw_os       = length(file("${local.path_platform_images_file_os}")) == 0 ? [] : split("\n", trimspace(file("${local.path_platform_images_file_os}")))
@@ -33,7 +33,7 @@ locals {
         ]
     ])
     // Platform most recent image for Opensearch
-  platform_images_most_recent_os = length(platform_images_list_os) == 0 ? null : element(platform_images_list_os, length(platform_images_list_os) - 1)
+  platform_images_most_recent_os = length(local.platform_images_list_os) == 0 ? null : element(local.platform_images_list_os, length(local.platform_images_list_os) - 1)
 
   // PPP images for Clickhouse
   path_ppp_images_file_ch = "${path.module}/${local.path_root_active_environment}/${var.file_images_ppp_ch}"
@@ -50,7 +50,7 @@ locals {
         ]
     ])
     // PPP most recent image for Clickhouse
-  ppp_images_most_recent_ch = length(ppp_images_list_ch) == 0 ? null : element(ppp_images_list_ch, length(ppp_images_list_ch) - 1)
+  ppp_images_most_recent_ch = length(local.ppp_images_list_ch) == 0 ? null : element(local.ppp_images_list_ch, length(local.ppp_images_list_ch) - 1)
   // PPP images for OpenSearch
   path_ppp_images_file_os = "${path.module}/${local.path_root_active_environment}/${var.file_images_ppp_os}"
   ppp_images_raw_os       = length(file("${local.path_ppp_images_file_os}")) == 0 ? [] : split("\n", trimspace(file("${local.path_ppp_images_file_os}")))
@@ -66,5 +66,5 @@ locals {
         ]
     ])
     // PPP most recent image for Opensearch
-  ppp_images_most_recent_os = length(ppp_images_list_os) == 0 ? null : element(ppp_images_list_os, length(ppp_images_list_os) - 1)
+  ppp_images_most_recent_os = length(local.ppp_images_list_os) == 0 ? null : element(local.ppp_images_list_os, length(local.ppp_images_list_os) - 1)
 }
