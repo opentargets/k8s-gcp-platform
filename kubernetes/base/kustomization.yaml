@@ -2,10 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - clickhouse/storage/pv.yaml
-  - clickhouse/storage/pvc.yaml
-  - clickhouse/service.yaml
-  - clickhouse/clickhouse.yaml
+  - clickhouse/storage/pv-1.yaml
+  - clickhouse/storage/pv-2.yaml
+  - clickhouse/storage/pv-3.yaml
+  - clickhouse/storage/pvc-1.yaml
+  - clickhouse/storage/pvc-2.yaml
+  - clickhouse/storage/pvc-3.yaml
   - graphqlapi/deployment.yaml
   - graphqlapi/service.yaml
   - graphqlapi/service-external.yaml
