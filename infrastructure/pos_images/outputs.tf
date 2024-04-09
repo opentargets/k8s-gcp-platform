@@ -2,8 +2,10 @@
 output "platform_ch_disks" {
   value = [
     for idx in range(length(google_compute_disk.platform_ch_disk[*])) : {
+        id = google_compute_disk.platform_ch_disk[idx].id
         name = google_compute_disk.platform_ch_disk[idx].name
-        image = google_compute_disk.platform_ch_disk[idx].image
+        image = split("/", google_compute_disk.platform_ch_disk[idx].image)[length(split("/", google_compute_disk.platform_ch_disk[idx].image)) - 1]
+        image_url = google_compute_disk.platform_ch_disk[idx].image
         zone = google_compute_disk.platform_ch_disk[idx].zone
     }
   ]
@@ -13,8 +15,10 @@ output "platform_ch_disks" {
 output "platform_os_disks" {
   value = [
     for idx in range(length(google_compute_disk.platform_os_disk[*])) : {
+        id = google_compute_disk.platform_os_disk[idx].id
         name = google_compute_disk.platform_os_disk[idx].name
-        image = google_compute_disk.platform_os_disk[idx].image
+        image = split("/", google_compute_disk.platform_os_disk[idx].image)[length(split("/", google_compute_disk.platform_os_disk[idx].image)) - 1]
+        image_url = google_compute_disk.platform_os_disk[idx].image
         zone = google_compute_disk.platform_os_disk[idx].zone
     }
   ]
@@ -24,8 +28,10 @@ output "platform_os_disks" {
 output "ppp_ch_disks" {
   value = [
     for idx in range(length(google_compute_disk.ppp_ch_disk[*])) : {
+        id = google_compute_disk.ppp_ch_disk[idx].id
         name = google_compute_disk.ppp_ch_disk[idx].name
-        image = google_compute_disk.ppp_ch_disk[idx].image
+        image = split("/", google_compute_disk.ppp_ch_disk[idx].image)[length(split("/", google_compute_disk.ppp_ch_disk[idx].image)) - 1]
+        image_url = google_compute_disk.ppp_ch_disk[idx].image
         zone = google_compute_disk.ppp_ch_disk[idx].zone
     }
   ]
@@ -35,8 +41,10 @@ output "ppp_ch_disks" {
 output "ppp_os_disks" {
   value = [
     for idx in range(length(google_compute_disk.ppp_os_disk[*])) : {
+        id = google_compute_disk.ppp_os_disk[idx].id
         name = google_compute_disk.ppp_os_disk[idx].name
-        image = google_compute_disk.ppp_os_disk[idx].image
+        image = split("/", google_compute_disk.ppp_os_disk[idx].image)[length(split("/", google_compute_disk.ppp_os_disk[idx].image)) - 1]
+        image_url = google_compute_disk.ppp_os_disk[idx].image
         zone = google_compute_disk.ppp_os_disk[idx].zone
     }
   ]
@@ -46,11 +54,13 @@ output "ppp_os_disks" {
 output "platform_ch_disks_most_recent" {
   value = [
     for idx in range(length(google_compute_disk.platform_ch_disk[*])) : {
+        id = google_compute_disk.platform_ch_disk[idx].id
         name = google_compute_disk.platform_ch_disk[idx].name
-        image = google_compute_disk.platform_ch_disk[idx].image
+        image = split("/", google_compute_disk.platform_ch_disk[idx].image)[length(split("/", google_compute_disk.platform_ch_disk[idx].image)) - 1]
+        image_url = google_compute_disk.platform_ch_disk[idx].image
         zone = google_compute_disk.platform_ch_disk[idx].zone
     }
-    if google_compute_disk.platform_ch_disk[idx].image == local.platform_images_most_recent_ch
+    if contains(split("/", google_compute_disk.platform_ch_disk[idx].image), local.platform_images_most_recent_ch)
   ]
 }
 
@@ -58,11 +68,13 @@ output "platform_ch_disks_most_recent" {
 output "platform_os_disks_most_recent" {
   value = [
     for idx in range(length(google_compute_disk.platform_os_disk[*])) : {
+        id = google_compute_disk.platform_os_disk[idx].id
         name = google_compute_disk.platform_os_disk[idx].name
-        image = google_compute_disk.platform_os_disk[idx].image
+        image = split("/", google_compute_disk.platform_os_disk[idx].image)[length(split("/", google_compute_disk.platform_os_disk[idx].image)) - 1]
+        image_url = google_compute_disk.platform_os_disk[idx].image
         zone = google_compute_disk.platform_os_disk[idx].zone
     }
-    if google_compute_disk.platform_os_disk[idx].image == local.platform_images_most_recent_os
+    if contains(split("/", google_compute_disk.platform_os_disk[idx].image), local.platform_images_most_recent_os)
   ]
 }
 
@@ -70,11 +82,13 @@ output "platform_os_disks_most_recent" {
 output "ppp_ch_disks_most_recent" {
   value = [
     for idx in range(length(google_compute_disk.ppp_ch_disk[*])) : {
+        id = google_compute_disk.ppp_ch_disk[idx].id
         name = google_compute_disk.ppp_ch_disk[idx].name
-        image = google_compute_disk.ppp_ch_disk[idx].image
+        image = split("/", google_compute_disk.ppp_ch_disk[idx].image)[length(split("/", google_compute_disk.ppp_ch_disk[idx].image)) - 1]
+        image_url = google_compute_disk.ppp_ch_disk[idx].image
         zone = google_compute_disk.ppp_ch_disk[idx].zone
     }
-    if google_compute_disk.ppp_ch_disk[idx].image == local.ppp_images_most_recent_ch
+    if contains(split("/", google_compute_disk.ppp_ch_disk[idx].image), local.ppp_images_most_recent_ch)
   ]
 }
 
@@ -82,10 +96,12 @@ output "ppp_ch_disks_most_recent" {
 output "ppp_os_disks_most_recent" {
   value = [
     for idx in range(length(google_compute_disk.ppp_os_disk[*])) : {
+        id = google_compute_disk.ppp_os_disk[idx].id
         name = google_compute_disk.ppp_os_disk[idx].name
-        image = google_compute_disk.ppp_os_disk[idx].image
+        image = split("/", google_compute_disk.ppp_os_disk[idx].image)[length(split("/", google_compute_disk.ppp_os_disk[idx].image)) - 1]
+        image_url = google_compute_disk.ppp_os_disk[idx].image
         zone = google_compute_disk.ppp_os_disk[idx].zone
     }
-    if google_compute_disk.ppp_os_disk[idx].image == local.ppp_images_most_recent_os
+    if contains(split("/", google_compute_disk.ppp_os_disk[idx].image), local.ppp_images_most_recent_os)
   ]
 }
