@@ -77,3 +77,15 @@ output "ppp_ch_disks_most_recent" {
     if google_compute_disk.ppp_ch_disk[idx].image == local.ppp_images_most_recent_ch
   ]
 }
+
+// Listing of the latest PPP OpenSearch disks deployed, according to the most recent image
+output "ppp_os_disks_most_recent" {
+  value = [
+    for idx in range(length(google_compute_disk.ppp_os_disk[*])) : {
+        name = google_compute_disk.ppp_os_disk[idx].name
+        image = google_compute_disk.ppp_os_disk[idx].image
+        zone = google_compute_disk.ppp_os_disk[idx].zone
+    }
+    if google_compute_disk.ppp_os_disk[idx].image == local.ppp_images_most_recent_os
+  ]
+}
