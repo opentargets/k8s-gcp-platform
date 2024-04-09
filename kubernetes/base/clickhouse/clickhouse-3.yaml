@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ch-platform-3
+  labels:
+    app: ch-platform
+    family: clickhouse
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ch-platform-3
+      family: clickhouse
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: ch-platform-3
+        family: clickhouse
+        tier: backend
+    spec:
+      containers:
+      - name: ch-platform
+        image: clickhouse/clickhouse-server:23.3.1.2823
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8123
+          name: ch-port-b
+        - containerPort: 9000
+          name: ch-port-a
+        volumeMounts:
+          - name: disk-clickhouse
+            mountPath: /data_volume
+          - name: disk-clickhouse
+            subPath: data
+            mountPath: /var/lib/clickhouse
+          - name: disk-clickhouse
+            subPath: users.d
+            mountPath: /etc/clickhouse-server/users.d
+          - name: disk-clickhouse
+            subPath: config.d
+            mountPath: /etc/clickhouse-server/config.d
+      volumes:
+      - name: disk-clickhouse
+        persistentVolumeClaim:
+          claimName: platform-clickhouse-3
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions: # schedule this where the GCE disk is
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - europe-west1-d
+
