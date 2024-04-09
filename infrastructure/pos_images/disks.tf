@@ -21,6 +21,7 @@ resource "google_compute_disk" "platform_ch_disk" {
   type  = "pd-balanced"
   size  = var.disk_size_platform_ch
   zone  = local.platform_images_list_ch_with_zones[count.index].zone
+  image = local.platform_images_list_ch_with_zones[count.index].image
 }
 
 // Platform Open Search disks
@@ -46,6 +47,7 @@ resource "google_compute_disk" "platform_os_disk" {
   type  = "pd-balanced"
   size  = var.disk_size_platform_os
   zone  = local.platform_images_list_os_with_zones[count.index].zone
+  image = local.platform_images_list_os_with_zones[count.index].image
 }
 
 // PPP Clickhouse disks
@@ -71,6 +73,7 @@ resource "google_compute_disk" "ppp_ch_disk" {
   type  = "pd-balanced"
   size  = var.disk_size_ppp_ch
   zone  = local.ppp_images_list_ch_with_zones[count.index].zone
+  image = local.ppp_images_list_ch_with_zones[count.index].image
 }
 
 // PPP Open Search disks
@@ -96,4 +99,5 @@ resource "google_compute_disk" "ppp_os_disk" {
   type  = "pd-balanced"
   size  = var.disk_size_ppp_os
   zone  = local.ppp_images_list_os_with_zones[count.index].zone
+  image = local.ppp_images_list_os_with_zones[count.index].image
 }
