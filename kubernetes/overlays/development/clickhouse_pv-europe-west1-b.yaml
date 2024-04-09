@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: platform-clickhouse-1
+spec:
+  csi:
+    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-b/disks/mbdev-gke-ch
