@@ -259,61 +259,61 @@ destroy_disks() {
 path_base_images="${folder_environments}/${environment}"
 case $command in
     add_image)
-        if [[ "$product" == "platform" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        if [[ "$product" == "$product_platform" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 add_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 add_image "${path_base_images}/${platform_image_file_opensearch}" "$image_name"
             fi
-        elif [[ "$product" == "ppp" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        elif [[ "$product" == "$product_ppp" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 add_image "${path_base_images}/${ppp_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 add_image "${path_base_images}/${ppp_image_file_opensearch}" "$image_name"
             fi
         fi
         ;;
     remove_image)
-        if [[ "$product" == "platform" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        if [[ "$product" == "$product_platform" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 remove_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 remove_image "${path_base_images}/${platform_image_file_opensearch}" "$image_name"
             fi
-        elif [[ "$product" == "ppp" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        elif [[ "$product" == "$product_ppp" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 remove_image "${path_base_images}/${ppp_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 remove_image "${path_base_images}/${ppp_image_file_opensearch}" "$image_name"
             fi
         fi
         ;;
     pop_image)
-        if [[ "$product" == "platform" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        if [[ "$product" == "$product_platform" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 pop_image "${path_base_images}/${platform_image_file_clickhouse}"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 pop_image "${path_base_images}/${platform_image_file_opensearch}"
             fi
-        elif [[ "$product" == "ppp" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        elif [[ "$product" == "$product_ppp" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 pop_image "${path_base_images}/${ppp_image_file_clickhouse}"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 pop_image "${path_base_images}/${ppp_image_file_opensearch}"
             fi
         fi
         ;;
-    list_images)
-        if [[ "$product" == "platform" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+list_images)
+        if [[ "$product" == "$product_platform" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 list_images "${path_base_images}/${platform_image_file_clickhouse}"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 list_images "${path_base_images}/${platform_image_file_opensearch}"
             fi
-        elif [[ "$product" == "ppp" ]]; then
-            if [[ "$image_type" == "clickhouse" ]]; then
+        elif [[ "$product" == "$product_ppp" ]]; then
+            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 list_images "${path_base_images}/${ppp_image_file_clickhouse}"
-            elif [[ "$image_type" == "opensearch" ]]; then
+            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
                 list_images "${path_base_images}/${ppp_image_file_opensearch}"
             fi
         fi
