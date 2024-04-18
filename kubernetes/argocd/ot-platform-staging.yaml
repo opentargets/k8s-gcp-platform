@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/opentargets/k8s-gcp-platform.git
     targetRevision: staging
-    path: kubernetes/overlays/staging
+    path: kubernetes/overlays/platform/staging
   destination:
     namespace: ot-platform-staging
     server: https://kubernetes.default.svc
