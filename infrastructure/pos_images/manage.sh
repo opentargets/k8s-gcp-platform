@@ -113,6 +113,8 @@ get_path_overlay_file() {
             return "${path_product_overlay}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
         elif [[ "$image_type" == "$image_type_opensearch" ]]; then
             return "${path_product_overlay}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+        else
+            error "Invalid image type '$image_type'."
         fi
     else
         error "Product '$product' does not exist."
