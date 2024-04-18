@@ -267,7 +267,7 @@ destroy_disks() {
 # Command line routing
 path_base_images="${folder_environments}/${environment}"
 case $command in
-    add_image)
+    "$cmd_add_image")
         if [[ "$product" == "$product_platform" ]]; then
             if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 add_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
@@ -282,7 +282,7 @@ case $command in
             fi
         fi
         ;;
-    remove_image)
+    "$cmd_remove_image")
         if [[ "$product" == "$product_platform" ]]; then
             if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 remove_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
@@ -297,7 +297,7 @@ case $command in
             fi
         fi
         ;;
-    pop_image)
+    "$cmd_pop_image")
         if [[ "$product" == "$product_platform" ]]; then
             if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 pop_image "${path_base_images}/${platform_image_file_clickhouse}"
@@ -312,7 +312,7 @@ case $command in
             fi
         fi
         ;;
-list_images)
+    "$cmd_list_images")
         if [[ "$product" == "$product_platform" ]]; then
             if [[ "$image_type" == "$image_type_clickhouse" ]]; then
                 list_images "${path_base_images}/${platform_image_file_clickhouse}"
@@ -327,10 +327,10 @@ list_images)
             fi
         fi
         ;;
-    deploy_disks)
+    "$cmd_deploy_disks")
         deploy_disks
         ;;
-    destroy_disks)
+    "$cmd_destroy_disks")
         destroy_disks
         ;;
     *)
