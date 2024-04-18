@@ -77,7 +77,7 @@ image_name=$5
 
 # Validate product (this is fine, we just have a couple of products)
 if [[ "$product" != "${product_platform}" && "$product" != "${product_ppp}" ]]; then
-    error "Invalid product. Must be 'platform' or 'ppp'."
+    error "Invalid product. Must be '$product_platform' or '$product_ppp'."
     exit 1
 fi
 
