@@ -21,6 +21,16 @@ platform_image_file_clickhouse="images_platform_ch.txt"
 platform_image_file_opensearch="images_platform_os.txt"
 ppp_image_file_clickhouse="images_ppp_ch.txt"
 ppp_image_file_opensearch="images_ppp_os.txt"
+# Overlays base location, relative to the script
+overlays_folder="../../kubernetes/overlays"
+# Clickhouse overlay base file name
+clickhouse_overlay_base="clickhouse_pv"
+# OpenSearch overlay base file name
+opensearch_overlay_base="opensearch_pv"
+# Overlays template file extension
+overlay_template_extension=".yaml.template"
+# Overlays instance file extension
+overlay_instance_extension=".yaml"
 
 # Sample commands
 # manage <environment> add_image <product> <image_type> <image_name>
@@ -72,6 +82,20 @@ if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
         exit 1
     fi
 fi
+
+# Helper functions for working with overlays
+# get_overlay_template_file_name <image_type> <zone>, produces the overlay template file name
+get_overlay_template_file_path() {
+    local image_type=$1
+    local zone=$2
+
+    if [[ "$image_type" == "clickhouse" ]]; then
+        echo "${overlays_folder}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
+    elif [[ "$image_type" == "opensearch" ]]; then
+        echo "${overlays_folder}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+    fi
+}
+
 # Function to add an image to the list
 add_image() {
     local image_file=$1
@@ -87,6 +111,9 @@ add_image() {
     echo "$image_name" >> "$image_file"
     log "Image added to the list."
 }
+
+# Helper functions
+# get_overlay_template_file_name <image_type> <zone>
 
 # Function to remove an image from the list
 remove_image() {
