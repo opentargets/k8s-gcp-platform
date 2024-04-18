@@ -99,8 +99,8 @@ if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
 fi
 
 # Helper functions for working with overlays
-# get_overlay_template_file_name <product> <environment> <image_type> <zone>, produces the overlay template file name
-get_overlay_template_file_name() {
+# get_path_overlay_file <product> <environment> <image_type> <zone>, produces the overlay template file name
+get_path_overlay_file() {
     local product=$1
     local environment=$2
     local image_type=$3
@@ -115,17 +115,18 @@ get_overlay_template_file_name() {
             return "${path_product_overlay}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
         fi
     else
-        echo "Product does not exist."
+        error "Product '$product' does not exist."
     fi
 }
-# update_overlay_instance_file <environment> <image_type> <zone> <gce_disk_id>, updates the overlay instance file with the corresponding GCE disk ID
+# update_overlay_instance_file <product> <environment> <image_type> <zone> <gce_disk_id>, updates the overlay instance file with the corresponding GCE disk ID
 update_overlay_instance_file() {
-    local environment=$1
-    local image_type=$2
-    local zone=$3
-    local gce_disk_id=$4
+    local product=$1
+    local environment=$2
+    local image_type=$3
+    local zone=$4
+    local gce_disk_id=$5
 
-    local overlay_template_file=$(get_overlay_template_file_name "$environment" "$image_type" "$zone")
+    local overlay_template_file=$(get_path_overlay_file "$product" "$environment" "$image_type" "$zone")
     local overlay_instance_file="${overlay_template_file%$overlay_template_extension}${overlay_instance_extension}"
 
     # If the overlay template file exists, replace 'GCE_DISK_ID' with the actual GCE disk ID in the overlay template file and use the output to overwrite the overlay instance file
