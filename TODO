@@ -1,4 +1,3 @@
 # This is a list of what to do as 'next steps'
 
-1. Refactor the overlays to separate _product_ from _environment_ in a similar way they are separate things for the infrastructure management code.
-2. TBD
+1. Update helper() to run on all images for a combination of (product, environment) to PR the new kustomizations back to branch
