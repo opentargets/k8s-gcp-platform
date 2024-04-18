@@ -97,9 +97,9 @@ get_overlay_template_file_name() {
     local image_type=$3
     local zone=$4
 
-    if [[ "$image_type" == "clickhouse" ]]; then
+    if [[ "$image_type" == "$image_type_clickhouse" ]]; then
         echo "${overlays_folder}/${product}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
-    elif [[ "$image_type" == "opensearch" ]]; then
+    elif [[ "$image_type" == "$image_type_opensearch" ]]; then
         echo "${overlays_folder}/${product}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
     fi
 }
