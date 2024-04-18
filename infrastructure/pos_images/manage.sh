@@ -15,6 +15,12 @@ error () {
 }
 
 # Global variables
+# Enums kind of
+product_platform="platform"
+product_ppp="ppp"
+image_type_clickhouse="clickhouse"
+image_type_opensearch="opensearch"
+# Folder locations and file names
 folder_environments="${SCRIPT_DIR}/environments"
 tf_context_file_name="context.tfvars"
 platform_image_file_clickhouse="images_platform_ch.txt"
@@ -69,8 +75,8 @@ product=$3
 image_type=$4
 image_name=$5
 
-# Validate product
-if [[ "$product" != "platform" && "$product" != "ppp" ]]; then
+# Validate product (this is fine, we just have a couple of products)
+if [[ "$product" != "${product_platform}" && "$product" != "${product_ppp}" ]]; then
     error "Invalid product. Must be 'platform' or 'ppp'."
     exit 1
 fi
