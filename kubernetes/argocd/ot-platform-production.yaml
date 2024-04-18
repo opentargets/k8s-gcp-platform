@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/opentargets/k8s-gcp-platform.git
     targetRevision: production
-    path: kubernetes/overlays/production
+    path: kubernetes/overlays/platform/production
   destination:
     namespace: ot-platform-production
     server: https://kubernetes.default.svc
