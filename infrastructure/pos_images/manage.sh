@@ -84,17 +84,36 @@ if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
 fi
 
 # Helper functions for working with overlays
-# get_overlay_template_file_name <image_type> <zone>, produces the overlay template file name
-get_overlay_template_file_path() {
-    local image_type=$1
-    local zone=$2
+# get_overlay_template_file_name <environment> <image_type> <zone>, produces the overlay template file name
+get_overlay_template_file_name() {
+    local environment=$1
+    local image_type=$2
+    local zone=$3
 
     if [[ "$image_type" == "clickhouse" ]]; then
-        echo "${overlays_folder}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
+        echo "${overlays_folder}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
     elif [[ "$image_type" == "opensearch" ]]; then
-        echo "${overlays_folder}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+        echo "${overlays_folder}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
     fi
 }
+# update_overlay_instance_file <environment> <image_type> <zone> <gce_disk_id>, updates the overlay instance file with the corresponding GCE disk ID
+update_overlay_instance_file() {
+    local environment=$1
+    local image_type=$2
+    local zone=$3
+    local gce_disk_id=$4
+
+    local overlay_template_file=$(get_overlay_template_file_name "$environment" "$image_type" "$zone")
+    local overlay_instance_file="${overlay_template_file%$overlay_template_extension}${overlay_instance_extension}"
+
+    # If the overlay template file exists, replace 'GCE_DISK_ID' with the actual GCE disk ID in the overlay template file and use the output to overwrite the overlay instance file
+    if [ -f "$overlay_template_file" ]; then
+        sed "s/GCE_DISK_ID/${gce_disk_id}/g" "$overlay_template_file" > "$overlay_instance_file"
+    fi
+}
+# The following function updates all images overlays for the given environment, based on the terraform outputs as 'latest images' for a given product.
+# Keep in mind that the meaning of 'environment' is different from the point of view of the infrastructure and the Kubernetes overlays, i.e. the environment in the infrastructure is the purpose environment (development, staging and production) while, for the kubernetes definition of the platform, those three environments are duplicated as per the number of products
+# TODO A need for reconciliation of these two approaches has been identified
 
 # Function to add an image to the list
 add_image() {
