@@ -84,16 +84,17 @@ if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
 fi
 
 # Helper functions for working with overlays
-# get_overlay_template_file_name <environment> <image_type> <zone>, produces the overlay template file name
+# get_overlay_template_file_name <product> <environment> <image_type> <zone>, produces the overlay template file name
 get_overlay_template_file_name() {
-    local environment=$1
-    local image_type=$2
-    local zone=$3
+    local product=$1
+    local environment=$2
+    local image_type=$3
+    local zone=$4
 
     if [[ "$image_type" == "clickhouse" ]]; then
-        echo "${overlays_folder}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
+        echo "${overlays_folder}/${product}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
     elif [[ "$image_type" == "opensearch" ]]; then
-        echo "${overlays_folder}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+        echo "${overlays_folder}/${product}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
     fi
 }
 # update_overlay_instance_file <environment> <image_type> <zone> <gce_disk_id>, updates the overlay instance file with the corresponding GCE disk ID
