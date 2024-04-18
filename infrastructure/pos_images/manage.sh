@@ -15,9 +15,18 @@ error () {
 }
 
 # Global variables
-# Enums kind of
+# "Externalized" strings
+# Commands
+cmd_add_image="add_image"
+cmd_remove_image="remove_image"
+cmd_pop_image="pop_image"
+cmd_list_images="list_images"
+cmd_deploy_disks="deploy_disks"
+cmd_destroy_disks="destroy_disks"
+# Products
 product_platform="platform"
 product_ppp="ppp"
+# Image types
 image_type_clickhouse="clickhouse"
 image_type_opensearch="opensearch"
 # Folder locations and file names
