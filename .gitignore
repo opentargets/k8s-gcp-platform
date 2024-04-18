@@ -1,3 +1,6 @@
 # To be removed
 kubernetes/base/clickhouse/storage/BORRAR/
 kubernetes/base/opensearch/BORRAR/
+
+# Ignore VSCode files
+**/.vscode/
