@@ -106,10 +106,16 @@ get_overlay_template_file_name() {
     local image_type=$3
     local zone=$4
 
-    if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-        echo "${overlays_folder}/${product}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
-    elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-        echo "${overlays_folder}/${product}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+    local path_product_overlay="${overlays_folder}/${product}"
+
+    if [[ -d "${path_product_overlay}" ]]; then
+        if [[ "$image_type" == "$image_type_clickhouse" ]]; then
+            return "${path_product_overlay}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
+        elif [[ "$image_type" == "$image_type_opensearch" ]]; then
+            return "${path_product_overlay}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+        fi
+    else
+        echo "Product does not exist."
     fi
 }
 # update_overlay_instance_file <environment> <image_type> <zone> <gce_disk_id>, updates the overlay instance file with the corresponding GCE disk ID
