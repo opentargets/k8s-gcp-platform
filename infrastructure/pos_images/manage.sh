@@ -72,8 +72,8 @@ if [ "$#" -lt 3 ]; then
     echo "  $product_ppp"
     echo ""
     echo "Image types:"
-    echo "  clickhouse"
-    echo "  opensearch"
+    echo "  $image_type_clickhouse"
+    echo "  $image_type_opensearch"
     exit 1
 fi
 
