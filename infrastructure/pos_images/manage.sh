@@ -83,7 +83,7 @@ fi
 
 # Validate image type, it must be either 'clickhouse' or 'opensearch', unless the command is 'deploy_disks' or 'destroy_disks'
 if [[ "$command" != "deploy_disks" && "$command" != "destroy_disks" ]]; then
-    if [[ "$image_type" != "clickhouse" && "$image_type" != "opensearch" ]]; then
+    if [[ "$image_type" != "${image_type_clickhouse}" && "$image_type" != "${image_type_opensearch}" ]]; then
         error "Invalid image type. Must be 'clickhouse' or 'opensearch'."
         exit 1
     fi
