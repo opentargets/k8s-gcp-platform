@@ -315,66 +315,24 @@ destroy_disks() {
 
 # Command line routing
 path_base_images="${folder_environments}/${environment}"
+declare -A image_files
+image_files["$product_platform,$image_type_clickhouse"]="${path_base_images}/${platform_image_file_clickhouse}"
+image_files["$product_platform,$image_type_opensearch"]="${path_base_images}/${platform_image_file_opensearch}"
+image_files["$product_ppp,$image_type_clickhouse"]="${path_base_images}/${ppp_image_file_clickhouse}"
+image_files["$product_ppp,$image_type_opensearch"]="${path_base_images}/${ppp_image_file_opensearch}"
+
 case $command in
     "$cmd_add_image")
-        if [[ "$product" == "$product_platform" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                add_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                add_image "${path_base_images}/${platform_image_file_opensearch}" "$image_name"
-            fi
-        elif [[ "$product" == "$product_ppp" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                add_image "${path_base_images}/${ppp_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                add_image "${path_base_images}/${ppp_image_file_opensearch}" "$image_name"
-            fi
-        fi
+        add_image "${image_files["$product,$image_type"]}" "$image_name"
         ;;
     "$cmd_remove_image")
-        if [[ "$product" == "$product_platform" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                remove_image "${path_base_images}/${platform_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                remove_image "${path_base_images}/${platform_image_file_opensearch}" "$image_name"
-            fi
-        elif [[ "$product" == "$product_ppp" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                remove_image "${path_base_images}/${ppp_image_file_clickhouse}" "$image_name"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                remove_image "${path_base_images}/${ppp_image_file_opensearch}" "$image_name"
-            fi
-        fi
+        remove_image "${image_files["$product,$image_type"]}" "$image_name"
         ;;
     "$cmd_pop_image")
-        if [[ "$product" == "$product_platform" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                pop_image "${path_base_images}/${platform_image_file_clickhouse}"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                pop_image "${path_base_images}/${platform_image_file_opensearch}"
-            fi
-        elif [[ "$product" == "$product_ppp" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                pop_image "${path_base_images}/${ppp_image_file_clickhouse}"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                pop_image "${path_base_images}/${ppp_image_file_opensearch}"
-            fi
-        fi
+        pop_image "${image_files["$product,$image_type"]}"
         ;;
     "$cmd_list_images")
-        if [[ "$product" == "$product_platform" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                list_images "${path_base_images}/${platform_image_file_clickhouse}"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                list_images "${path_base_images}/${platform_image_file_opensearch}"
-            fi
-        elif [[ "$product" == "$product_ppp" ]]; then
-            if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-                list_images "${path_base_images}/${ppp_image_file_clickhouse}"
-            elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-                list_images "${path_base_images}/${ppp_image_file_opensearch}"
-            fi
-        fi
+        list_images "${image_files["$product,$image_type"]}"
         ;;
     "$cmd_deploy_disks")
         deploy_disks
