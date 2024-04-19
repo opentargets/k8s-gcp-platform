@@ -146,7 +146,7 @@ update_overlay_instance_file() {
 
     # If the overlay template file exists, replace 'GCE_DISK_ID' with the actual GCE disk ID in the overlay template file and use the output to overwrite the overlay instance file
     if [ -f "$overlay_template_file" ]; then
-        sed "s/GCE_DISK_ID/${gce_disk_id}/g" "$overlay_template_file" > "$overlay_instance_file"
+        sed "s#GCE_DISK_ID#${gce_disk_id}#g" "$overlay_template_file" > "$overlay_instance_file"
     fi
 }
 # Given a <product> and <image_type>, get the latest gce disks information from terraform outputs as one disk per line, where every line contains the disk ID and the disk zone separated by a tab character
