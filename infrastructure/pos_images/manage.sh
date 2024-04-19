@@ -142,6 +142,30 @@ update_overlay_instance_file() {
         sed "s/GCE_DISK_ID/${gce_disk_id}/g" "$overlay_template_file" > "$overlay_instance_file"
     fi
 }
+# Given a <product> and <image_type>, get the latest gce disks information from terraform outputs as one disk per line, where every line contains the disk ID and the disk zone separated by a tab character
+get_latest_gce_disks_info() {
+    local product=$1
+    local image_type=$2
+
+    local tf_output_key=""
+    if [[ "$product" == "$product_platform" ]]; then
+        if [[ "$image_type" == "$image_type_clickhouse" ]]; then
+            tf_output_key="$tf_output_key_platform_clickhouse_latest"
+        elif [[ "$image_type" == "$image_type_opensearch" ]]; then
+            tf_output_key="$tf_output_key_platform_opensearch_latest"
+        fi
+    elif [[ "$product" == "$product_ppp" ]]; then
+        if [[ "$image_type" == "$image_type_clickhouse" ]]; then
+            tf_output_key="$tf_output_key_ppp_clickhouse_latest"
+        elif [[ "$image_type" == "$image_type_opensearch" ]]; then
+            tf_output_key="$tf_output_key_ppp_opensearch_latest"
+        fi
+    fi
+
+    if [[ -n "$tf_output_key" ]]; then
+        terraform output -json "$tf_output_key" | jq -r '.[] | "\(.id)\t\(.zone)"'
+    fi
+}
 # The following function updates all images overlays for the given environment, based on the terraform outputs as 'latest images' for a given product.
 
 # Function to add an image to the list
