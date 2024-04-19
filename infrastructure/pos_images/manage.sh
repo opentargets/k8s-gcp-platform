@@ -18,7 +18,7 @@ error () {
 SED_I="sed -i"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    SED_I='sed -i ""'
+    SED_I='sed -i ".bak"'
 fi
 
 # Global variables
