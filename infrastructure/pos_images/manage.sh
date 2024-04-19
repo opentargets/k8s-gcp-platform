@@ -46,6 +46,12 @@ opensearch_overlay_base="opensearch_pv"
 overlay_template_extension=".yaml.template"
 # Overlays instance file extension
 overlay_instance_extension=".yaml"
+# Terraform output information for extracting values
+# Most recent disks information keys, format is 'tf_output_key_<product>_<image_type>_latest'
+tf_output_key_platform_clickhouse_latest="platform_ch_disks_most_recent"
+tf_output_key_platform_opensearch_latest="platform_os_disks_most_recent"
+tf_output_key_ppp_clickhouse_latest="ppp_ch_disks_most_recent"
+tf_output_key_ppp_opensearch_latest="ppp_os_disks_most_recent"
 
 # Sample commands
 # manage <environment> add_image <product> <image_type> <image_name>
