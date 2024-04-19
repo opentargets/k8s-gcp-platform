@@ -14,6 +14,13 @@ error () {
   echo -e "\033[1;31m$@\033[0m"
 }
 
+# Cross-platform
+SED_I="sed -i"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    SED_I='sed -i ""'
+fi
+
 # Global variables
 # "Externalized" strings
 # Commands
@@ -206,7 +213,7 @@ remove_image() {
 
     if [ -f "$image_file" ]; then
         if grep -q "$image_name" "$image_file"; then
-            sed -i "/$image_name/d" "$image_file"
+            $SED_I "/$image_name/d" "$image_file"
             log "Image '$image_name' removed from the list."
         else
             error "Image not found in the list."
@@ -225,7 +232,7 @@ pop_image() {
     if [ -f "$image_file" ]; then
         if [ -s "$image_file" ]; then
             local image_name=$(head -n 1 "$image_file")
-            sed -i "1d" "$image_file"
+            $SED_I "1d" "$image_file"
             log "Image popped from the list: $image_name"
         else
             error "Image list is empty."
