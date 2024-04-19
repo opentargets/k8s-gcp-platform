@@ -254,10 +254,15 @@ list_images() {
         exit 1
     fi
 }
-
-# Function to deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+# Given an <environment> return the path to the context file to be used with Terraform
+get_path_tf_context_file() {
+    local environment=$1
+    echo "${folder_environments}/${environment}/${tf_context_file_name}"
+}
+# Given an <environment>, deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
 deploy_disks() {
-    local path_tf_context="${folder_environments}/${environment}/${tf_context_file_name}"
+    local environment=$1
+    local path_tf_context=$(get_path_tf_context_file "$environment")
 
     # Init Terraform, exit if it fails
     log "Initializing Terraform..."
@@ -284,9 +289,10 @@ deploy_disks() {
     fi
 }
 
-# Function to destroy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+# Given an <environment>, destroy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
 destroy_disks() {
-    local path_tf_context="${folder_environments}/${environment}/${tf_context_file_name}"
+    local environment=$1
+    local path_tf_context=$(get_path_tf_context_file "$environment")
 
     # Init Terraform, exit if it fails
     log "Initializing Terraform..."
@@ -335,10 +341,10 @@ case $command in
         list_images "${image_files["$product,$image_type"]}"
         ;;
     "$cmd_deploy_disks")
-        deploy_disks
+        deploy_disks $environment
         ;;
     "$cmd_destroy_disks")
-        destroy_disks
+        destroy_disks $environment
         ;;
     *)
         error "Invalid command."
