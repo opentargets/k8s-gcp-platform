@@ -137,8 +137,6 @@ update_overlay_instance_file() {
     fi
 }
 # The following function updates all images overlays for the given environment, based on the terraform outputs as 'latest images' for a given product.
-# Keep in mind that the meaning of 'environment' is different from the point of view of the infrastructure and the Kubernetes overlays, i.e. the environment in the infrastructure is the purpose environment (development, staging and production) while, for the kubernetes definition of the platform, those three environments are duplicated as per the number of products
-# TODO A need for reconciliation of these two approaches has been identified
 
 # Function to add an image to the list
 add_image() {
