@@ -70,8 +70,8 @@ if [ "$#" -lt 3 ]; then
     echo "  $cmd_remove_image <product> <image_type> <image_name>"
     echo "  $cmd_pop_image <product> <image_type>"
     echo "  $cmd_list_images <product> <image_type>"
-    echo "  $cmd_deploy_disks"
-    echo "  $cmd_destroy_disks"
+    echo "  $cmd_deploy_disks <product> <image_type>"
+    echo "  $cmd_destroy_disks (DEVELOPMENT ONLY - DO NOT USE IN CI/CD)" # DEVELOPMENT ONLY
     echo ""
     echo "Products:"
     echo "  $product_platform"
@@ -192,7 +192,7 @@ add_image() {
         fi
     fi
 
-    echo "$image_name" >> "$image_file"
+    log "$image_name" >> "$image_file"
     log "Image added to the list."
 }
 
@@ -257,11 +257,14 @@ list_images() {
 # Given an <environment> return the path to the context file to be used with Terraform
 get_path_tf_context_file() {
     local environment=$1
-    echo "${folder_environments}/${environment}/${tf_context_file_name}"
+    return "${folder_environments}/${environment}/${tf_context_file_name}"
 }
-# Given an <environment>, deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+# Given a <product>, <environment> and <image_type>, deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
 deploy_disks() {
-    local environment=$1
+    local product=$1
+    local environment=$2
+    local image_type=$3
+    
     local path_tf_context=$(get_path_tf_context_file "$environment")
 
     # Init Terraform, exit if it fails
@@ -287,9 +290,14 @@ deploy_disks() {
         error "Failed to deploy disks."
         exit 1
     fi
+
+    # update the relevant overlay instances with the latest GCE disks information
+    update_overlay_instance_files "$product" "$environment" "$image_type"
 }
 
 # Given an <environment>, destroy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
+# THIS FUNCTION IS FOR DEVELOPMENT PURPOSES ONLY, IT DESTROYS THE DISKS BUT DOESN'T TOUCH THE OVERLAYS
+# DO NOT USE IN A CI/CD PIPELINE
 destroy_disks() {
     local environment=$1
     local path_tf_context=$(get_path_tf_context_file "$environment")
@@ -341,7 +349,7 @@ case $command in
         list_images "${image_files["$product,$image_type"]}"
         ;;
     "$cmd_deploy_disks")
-        deploy_disks $environment
+        deploy_disks $product $environment  $image_type
         ;;
     "$cmd_destroy_disks")
         destroy_disks $environment
