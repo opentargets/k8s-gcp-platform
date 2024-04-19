@@ -166,7 +166,19 @@ get_latest_gce_disks_info() {
         terraform output -json "$tf_output_key" | jq -r '.[] | "\(.id)\t\(.zone)"'
     fi
 }
-# The following function updates all images overlays for the given environment, based on the terraform outputs as 'latest images' for a given product.
+# Given a <product>, <environment> and <image_type>, update the overlay instance files with the latest GCE disks information
+update_overlay_instance_files() {
+    local product=$1
+    local environment=$2
+    local image_type=$3
+
+    local gce_disks_info=$(get_latest_gce_disks_info "$product" "$image_type")
+    if [[ -n "$gce_disks_info" ]]; then
+        while IFS=$'\t' read -r gce_disk_id zone; do
+            update_overlay_instance_file "$product" "$environment" "$image_type" "$zone" "$gce_disk_id"
+        done <<< "$gce_disks_info"
+    fi
+}
 
 # Function to add an image to the list
 add_image() {
