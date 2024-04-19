@@ -123,9 +123,9 @@ get_path_overlay_file() {
 
     if [[ -d "${path_product_overlay}" ]]; then
         if [[ "$image_type" == "$image_type_clickhouse" ]]; then
-            return "${path_product_overlay}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
+            echo "${path_product_overlay}/${environment}/${clickhouse_overlay_base}-${zone}${overlay_template_extension}"
         elif [[ "$image_type" == "$image_type_opensearch" ]]; then
-            return "${path_product_overlay}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
+            echo "${path_product_overlay}/${environment}/${opensearch_overlay_base}-${zone}${overlay_template_extension}"
         else
             error "Invalid image type '$image_type'."
         fi
@@ -264,7 +264,7 @@ list_images() {
 # Given an <environment> return the path to the context file to be used with Terraform
 get_path_tf_context_file() {
     local environment=$1
-    return "${folder_environments}/${environment}/${tf_context_file_name}"
+    echo "${folder_environments}/${environment}/${tf_context_file_name}"
 }
 # Given a <product>, <environment> and <image_type>, deploy GCE disks using terraform, based on the images in the list file for both products (platform and ppp), given an environment
 deploy_disks() {
