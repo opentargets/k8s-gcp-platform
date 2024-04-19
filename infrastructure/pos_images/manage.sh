@@ -207,7 +207,7 @@ remove_image() {
     if [ -f "$image_file" ]; then
         if grep -q "$image_name" "$image_file"; then
             sed -i "/$image_name/d" "$image_file"
-            log "Image removed from the list."
+            log "Image '$image_name' removed from the list."
         else
             error "Image not found in the list."
             exit 1
