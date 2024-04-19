@@ -298,6 +298,7 @@ deploy_disks() {
         exit 1
     fi
 
+    # TODO - This should be externalized to a different script, updating k8s overlays is not within the concerns of this script
     # update the relevant overlay instances with the latest GCE disks information
     update_overlay_instance_files "$product" "$environment" "$image_type"
 }
