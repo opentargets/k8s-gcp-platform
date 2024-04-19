@@ -192,8 +192,8 @@ add_image() {
         fi
     fi
 
-    log "$image_name" >> "$image_file"
-    log "Image added to the list."
+    echo "$image_name" >> "$image_file"
+    log "Image, '$image_name', added to the list."
 }
 
 # Helper functions
