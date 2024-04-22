@@ -4,5 +4,6 @@
   a. Create a PVC for each deployment and lock Clickhouse and Opensearch scalability to 1 replica per zone.
   b. Create three Clickhouse stateful sets, each of them configured with affinity to their corresponding PVC template, allowing then for scalability.
   c. How can I trigger a re-build of the PVCs associated with either the deployments or the stateful sets?
-2. Create a GitHub repository for POS to update image information every time it runs.
-3. Create a Pull Request with the changes to the overlays back to the corresponding branch in the repository.
+2. Clickhouse deployment definitions have their source PVs and PVCs, but the deployments don't have there own PVCs specifying the source PVC that is linked with the GCE disks
+3. Create a GitHub repository for POS to update image information every time it runs.
+4. Create a Pull Request with the changes to the overlays back to the corresponding branch in the repository.
