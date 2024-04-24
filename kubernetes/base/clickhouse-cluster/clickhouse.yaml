@@ -27,6 +27,8 @@ spec:
       - name: default-pod-template
         podDistribution:
           - type: ClickHouseAntiAffinity
+          - type: ShardAntiAffinity
+          - type: ReplicaAntiAffinity
         spec:
           containers:
             - name: platform-clickhouse
