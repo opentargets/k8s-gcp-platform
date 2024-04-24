@@ -1,12 +1,12 @@
-apiVersion: clickhouse-keeper.altinity.com/v1
-kind: ClickHouseKeeperInstallation
+apiVersion: clickhouse.altinity.com/v1
+kind: ClickHouseInstallation
 metadata:
   name: platform-clickhouse
 spec:
-  defaults:
-    templates:
-      dataVolumeClaimTemplate: default-pvc-template
   configuration:
+    zookeeper:
+      nodes:
+        - host: platform-clickhouse-keeper
     users:
       default/password: ""
       default/networks/ip: 
@@ -19,7 +19,16 @@ spec:
         layout:
           shardsCount: 3
           replicasCount: 2
+        templates:
+          podTemplate: default-pod-template
+          dataVolumeClaimTemplate: default-pvc-template
   templates:
+    podTemplates:
+      - name: default-pod-template
+        spec:
+          containers:
+            - name: platform-clickhouse
+              image: clickhouse/clickhouse-server:24.3.2.23
     volumeClaimTemplates:
       - name: default-pvc-template
         spec:
