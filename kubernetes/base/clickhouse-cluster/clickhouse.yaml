@@ -25,6 +25,12 @@ spec:
   templates:
     podTemplates:
       - name: default-pod-template
+        zone:
+          key: clickhouse
+          values:
+            - "allow"
+        podDistribution:
+          - type: "ClickHouseInstallationAffinity"
         spec:
           containers:
             - name: platform-clickhouse
