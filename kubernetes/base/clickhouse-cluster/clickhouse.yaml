@@ -30,7 +30,7 @@ spec:
           values:
             - "allow"
         podDistribution:
-          - type: "ClickHouseInstallationAffinity"
+          - type: ClickHouseAntiAffinity
         spec:
           containers:
             - name: platform-clickhouse
