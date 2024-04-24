@@ -17,7 +17,7 @@ spec:
     clusters:
       - name: ot-platform
         layout:
-          shardsCount: 3
+          shardsCount: 2
           replicasCount: 2
         templates:
           podTemplate: default-pod-template
