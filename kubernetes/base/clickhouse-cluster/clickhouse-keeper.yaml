@@ -1,0 +1,11 @@
+apiVersion: clickhouse-keeper.altinity.com/v1
+kind: ClickHouseKeeperInstallation
+metadata:
+  name: platform-clickhouse-keeper
+spec:
+  configuration:
+    clusters:
+      - name: ot-platform
+        layout:
+          replicasCount: 3
+  
