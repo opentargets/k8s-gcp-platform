@@ -18,7 +18,7 @@ spec:
       - name: ot-platform
         layout:
           shardsCount: 2
-          replicasCount: 2
+          replicasCount: 1
         templates:
           podTemplate: default-pod-template
           dataVolumeClaimTemplate: default-pvc-template
