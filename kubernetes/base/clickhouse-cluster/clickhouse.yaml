@@ -1,0 +1,30 @@
+apiVersion: clickhouse.altinity.com/v1
+kind: ClickHouseKeeperInstallation
+metadata:
+  name: platform-clickhouse
+spec:
+  defaults:
+    templates:
+      dataVolumeClaimTemplate: default-pvc-template
+  configuration:
+    users:
+      default/password: ""
+      default/networks/ip: 
+        - "::/0"
+        - "0.0.0.0/0"
+      default/profile: default
+      default/quota: default
+    clusters:
+      - name: ot-platform
+        layout:
+          shardsCount: 3
+          replicasCount: 2
+  templates:
+    volumeClaimTemplates:
+      - name: default-pvc-template
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 64Gi
