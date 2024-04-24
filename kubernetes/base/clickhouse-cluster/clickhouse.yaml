@@ -25,10 +25,6 @@ spec:
   templates:
     podTemplates:
       - name: default-pod-template
-        zone:
-          key: clickhouse
-          values:
-            - "allow"
         podDistribution:
           - type: ClickHouseAntiAffinity
         spec:
