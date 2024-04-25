@@ -39,6 +39,7 @@ spec:
         spec:
           accessModes:
             - ReadWriteOnce
+          storageClassName: premium-rwo
           resources:
             requests:
               storage: 32Gi
