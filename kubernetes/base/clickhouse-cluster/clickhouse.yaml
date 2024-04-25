@@ -7,6 +7,7 @@ spec:
     zookeeper:
       nodes:
         - host: platform-clickhouse-keeper
+          port: 9181
     users:
       default/password: ""
       default/networks/ip: 
