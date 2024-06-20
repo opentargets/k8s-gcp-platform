@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: openaiapi-platform-external
+  name: openaiapi-external
   labels:
-    app: openaiapi-platform
+    app: openaiapi
     tier: external
 spec:
   ports:
@@ -12,6 +12,6 @@ spec:
     targetPort: openaiapi-port
     name: openaiapi-port-svc-external
   selector:
-    app: openaiapi-platform
+    app: openaiapi
     tier: backend
   type: NodePort
