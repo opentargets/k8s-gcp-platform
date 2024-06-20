@@ -5,13 +5,9 @@ resources:
   - graphqlapi/deployment.yaml
   - graphqlapi/service.yaml
   - graphqlapi/service-external.yaml
-#  - openaiapi/deployment.yaml
-#  - openaiapi/service.yaml
-#  - openaiapi/service-external.yaml
-#  - opensearch/storage/pv.yaml
-#  - opensearch/storage/pvc.yaml
-#  - opensearch/opensearch.yaml
-#  - opensearch/service.yaml
+  - openaiapi/deployment.yaml
+  - openaiapi/service.yaml
+  - openaiapi/service-external.yaml
 #  - web/deployment.yaml
 #  - web/service.yaml
 #  - web/service-external.yaml
