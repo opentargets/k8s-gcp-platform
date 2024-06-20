@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: graphqlapi-platform
+  name: graphqlapi
   labels:
-    app: graphqlapi-platform
+    app: graphqlapi
     tier: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: graphqlapi-platform
+      app: graphqlapi
       tier: backend
   template:
     metadata:
       labels:
-        app: graphqlapi-platform
+        app: graphqlapi
         tier: backend
     spec:
       containers:
-      - name: graphqlapi-platform
+      - name: graphqlapi
         image: quay.io/opentargets/platform-api:24.0.2
         imagePullPolicy: Always
         ports:
@@ -26,9 +26,9 @@ spec:
           name: gqlapi-port
         env:
         - name: SLICK_CLICKHOUSE_URL
-          value: "jdbc:clickhouse://ch-platform:9000"
+          value: "jdbc:clickhouse://clickhouse:9000"
         - name: ELASTICSEARCH_HOST
-          value: "os-platform"
+          value: "opensearch"
         - name: META_APIVERSION_MAJOR
           value: "0"
         - name: META_APIVERSION_MINOR
@@ -36,7 +36,7 @@ spec:
         - name: META_APIVERSION_PATCH
           value: "0"
         - name: META_DATA_YEAR
-          value: "23"
+          value: "24"
         - name: META_DATA_MONTH
           value: "6"
         - name: META_DATA_ITERATION
