@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: openaiapi-platform
+  name: openaiapi
   labels:
-    app: openaiapi-platform
+    app: openaiapi
     tier: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: openaiapi-platform
+      app: openaiapi
       tier: backend
   template:
     metadata:
       labels:
-        app: openaiapi-platform
+        app: openaiapi
         tier: backend
     spec:
       containers:
-      - name: openaiapi-platform
+      - name: openaiapi
         image: quay.io/opentargets/ot-ai-api:0.0.10
         imagePullPolicy: Always
         ports:
