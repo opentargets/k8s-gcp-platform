@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: graphqlapi-platform-external
+  name: ext-graphqlapi
   labels:
-    app: graphqlapi-platform
+    app: graphqlapi
     tier: external
 spec:
   ports:
@@ -12,6 +12,6 @@ spec:
     targetPort: gqlapi-port
     name: gqlapi-port-svc-external
   selector:
-    app: graphqlapi-platform
+    app: graphqlapi
     tier: backend
   type: NodePort
