@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: opensearch
+  labels:
+    app: opensearch
+    tier: storage
+    stack: opensearch
+spec:
+  storageClassName: data-backend
+  volumeName: opensearch
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 128Gi
