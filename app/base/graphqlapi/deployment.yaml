@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: graphqlapi
-        image: quay.io/opentargets/platform-api:24.0.2
+        image: quay.io/opentargets/platform-api:24.1.0-dev.6
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
