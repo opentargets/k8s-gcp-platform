@@ -5,7 +5,7 @@ resources:
   - ../../../base
 
 components:
-  - ../../../components/clickhouse
+  #- ../../../components/clickhouse
   - ../../../components/opensearch
   #- ../../../components/development
   #- ../../../components/https-ingress
