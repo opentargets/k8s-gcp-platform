@@ -38,7 +38,7 @@ spec:
         - name: META_DATA_YEAR
           value: "24"
         - name: META_DATA_MONTH
-          value: "6"
+          value: "9"
         - name: META_DATA_ITERATION
           value: "0"
         - name: PLATFORM_API_IGNORE_CACHE
