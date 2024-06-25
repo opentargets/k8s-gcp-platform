@@ -26,7 +26,7 @@ spec:
           name: gqlapi-port
         env:
         - name: SLICK_CLICKHOUSE_URL
-          value: "jdbc:clickhouse://clickhouse:9000"
+          value: "jdbc:clickhouse://clickhouse:8123"
         - name: ELASTICSEARCH_HOST
           value: "opensearch"
         - name: META_APIVERSION_MAJOR
