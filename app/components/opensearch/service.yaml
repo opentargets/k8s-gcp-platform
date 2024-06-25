@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: opensearch
+  labels:
+    app: opensearch
+    tier: backend
+spec:
+  selector:
+    app: opensearch
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 9200
+    targetPort: os-port-b
+    name: os-port-b-svc
+  - protocol: TCP
+    port: 9300
+    targetPort: os-port-a
+    name: os-port-a-svc
