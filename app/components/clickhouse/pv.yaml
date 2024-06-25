@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: clickhouse
+  labels:
+    app: clickhouse
+    tier: storage
+    stack: clickhouse
+spec:
+  storageClassName: data-backend
+  capacity:
+    storage: 64Gi
+  accessModes:
+    - ReadWriteOnce
+  csi:
+    driver: pd.csi.storage.gke.io
+    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/data-clickhouse
+    fsType: ext4
