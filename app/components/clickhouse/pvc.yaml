@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clickhouse
+  labels:
+    app: clickhouse
+    tier: storage
+    stack: clickhouse
+spec:
+  storageClassName: data-backend
+  volumeName: clickhouse
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 64Gi
