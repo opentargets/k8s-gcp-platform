@@ -34,20 +34,20 @@ spec:
         - containerPort: 9000
           name: ch-port-a
         volumeMounts:
-          - name: platform-ch
+          - name: data-ch
             mountPath: /data_volume
-          - name: platform-ch
+          - name: data-ch
             subPath: data
             mountPath: /var/lib/clickhouse
-          - name: platform-ch
+          - name: data-ch
             subPath: users.d
             mountPath: /etc/clickhouse-server/users.d
-          - name: platform-ch
+          - name: data-ch
             subPath: config.d
             mountPath: /etc/clickhouse-server/config.d
   volumeClaimTemplates:
   - metadata:
-      name: platform-ch
+      name: data-ch
       labels:
         app: clickhouse
         tier: storage
