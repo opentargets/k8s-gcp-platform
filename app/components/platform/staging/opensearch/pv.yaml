@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: d676e16a40d19c7b-pv
+  labels:
+    app: opensearch
+    tier: storage
+    stack: opensearch
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: staging
+spec:
+  storageClassName: data-backend
+  capacity:
+    storage: 128Gi
+  accessModes:
+    - ReadWriteOnce
+  csi:
+    driver: pd.csi.storage.gke.io
+    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/d676e16a40d19c7b-disk
+    fsType: ext4
