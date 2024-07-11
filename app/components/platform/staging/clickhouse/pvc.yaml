@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: 58242f87fd738ab2-pvc
+  labels:
+    app: clickhouse
+    tier: storage
+    stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: staging
+spec:
+  storageClassName: data-backend
+  volumeName: 58242f87fd738ab2-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 64Gi
