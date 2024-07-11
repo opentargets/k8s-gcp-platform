@@ -1,4 +1,4 @@
-# requirements.txt
+# Requirements file for the update_data_backend_stack.sh script
 bash>=4.0.0
 openssl
 yq>=4.0.0
