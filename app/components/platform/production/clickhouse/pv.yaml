@@ -18,5 +18,5 @@ spec:
     - ReadWriteOnce
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/58242f87fd738ab2-disk
+    volumeHandle: projects/open-targets-prod/zones/europe-west1-d/disks/58242f87fd738ab2-disk
     fsType: ext4
