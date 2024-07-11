@@ -5,6 +5,11 @@ metadata:
   labels:
     app: clickhouse
     tier: backend
+    stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   selector:
     app: clickhouse
