@@ -14,10 +14,17 @@ generate_unique_id() {
     local image_name="$4"
     
     if [ -z "$prefix" ]; then
-        prefix=$(date +%s)
+        prefix="auto"
     fi
     
-    echo "${prefix}-${stack_folder##*/}-${image_project}-${image_name}" | sed 's/[^a-zA-Z0-9-]/-/g' | cut -c1-63
+    # Combine all inputs into a single string
+    local combined="${prefix}-${stack_folder##*/}-${image_project}-${image_name}"
+    
+    # Use SHA-256 hash to create a deterministic, fixed-length output
+    local hash=$(echo -n "$combined" | sha256sum | awk '{print $1}')
+    
+    # Take the first 32 characters of the hash
+    echo "${hash:0:16}"
 }
 
 # Check if required arguments are provided
