@@ -1,4 +1,4 @@
 # requirements.txt
-bash
+bash>=4.0.0
 openssl
 yq>=4.0.0
