@@ -21,7 +21,15 @@ generate_unique_id() {
     local combined="${prefix}-${stack_folder##*/}-${image_project}-${image_name}"
     
     # Use SHA-256 hash to create a deterministic, fixed-length output
-    local hash=$(echo -n "$combined" | sha256sum | awk '{print $1}')
+    # Check if openssl is available
+    if command -v openssl >/dev/null 2>&1; then
+        # Use openssl to create a SHA-256 hash
+        local hash=$(echo -n "$combined" | openssl dgst -sha256 -hex | sed 's/^.* //')
+    else
+        # Fallback to a less secure but more universally available method
+        local hash=$(echo -n "$combined" | cksum | awk '{print $1}')
+        hash=$(printf "%032x" $hash)  # Convert to 32-character hex
+    fi
     
     # Take the first 32 characters of the hash
     echo "${hash:0:16}"
