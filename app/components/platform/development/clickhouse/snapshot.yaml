@@ -1,8 +1,8 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: clickhouse
+  name: f2cfe71af1f79fda-snapshot
 spec:
   volumeSnapshotClassName: data-backend
   source:
-    persistentVolumeClaimName: clickhouse
+    persistentVolumeClaimName: f2cfe71af1f79fda-pvc

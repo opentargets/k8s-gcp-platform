@@ -9,7 +9,7 @@ metadata:
     product: platform
     environment: development
     stack: clickhouse
-  name: data-clickhouse
+  name: f2cfe71af1f79fda-disk
 spec:
   deletionPolicy: Delete
   forProvider:
