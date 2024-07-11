@@ -5,6 +5,11 @@ metadata:
   labels:
     app: opensearch
     tier: backend
+    stack: opensearch
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   selector:
     app: opensearch
