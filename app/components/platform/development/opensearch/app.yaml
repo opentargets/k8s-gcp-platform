@@ -5,6 +5,11 @@ metadata:
   labels:
     app: opensearch
     tier: backend
+    stack: opensearch
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   serviceName: opensearch
   replicas: 3
@@ -17,6 +22,11 @@ spec:
       labels:
         app: opensearch
         tier: backend
+        team: open-targets
+        subteam: backend
+        product: platform
+        environment: development
+        stack: opensearch
     spec:
       containers:
         - name: opensearch
@@ -54,6 +64,11 @@ spec:
         labels:
           app: opensearch
           tier: storage
+          stack: opensearch
+          team: open-targets
+          subteam: backend
+          product: platform
+          environment: development
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
