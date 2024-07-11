@@ -5,6 +5,11 @@ metadata:
   labels:
     app: clickhouse
     tier: backend
+    stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   serviceName: clickhouse
   replicas: 3
@@ -17,6 +22,11 @@ spec:
       labels:
         app: clickhouse
         tier: backend
+        stack: clickhouse
+        team: open-targets
+        subteam: backend
+        product: platform
+        environment: development
     spec:
       # This allowance here is a hack to allow for the new cluster to be created before the old one is deleted
       terminationGracePeriodSeconds: 360
@@ -51,6 +61,11 @@ spec:
         labels:
           app: clickhouse
           tier: storage
+          stack: clickhouse
+          team: open-targets
+          subteam: backend
+          product: platform
+          environment: development
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
