@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Requirements:
+# - bash (version 4.0+)
+# - yq
+# - openssl
+
+# Script directory
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # Logging function
 log() {
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
