@@ -6,6 +6,10 @@ metadata:
     app: opensearch
     tier: storage
     stack: opensearch
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   storageClassName: data-backend
   capacity:
