@@ -1,0 +1,19 @@
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: Disk
+metadata:
+  annotations:
+    meta.upbound.io/example-id: compute/v1beta1/disk
+  labels:
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: staging
+    stack: opensearch
+  name: d676e16a40d19c7b-disk
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    project: open-targets-eu-dev
+    zone: europe-west1-d
+    type: pd-balanced
+    image: projects/open-targets-eu-dev/global/images/posdevpf-20240704-0748-es
