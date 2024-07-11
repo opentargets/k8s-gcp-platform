@@ -9,11 +9,11 @@ metadata:
     product: platform
     environment: development
     stack: opensearch
-  name: data-opensearch
+  name: d676e16a40d19c7b-disk
 spec:
   deletionPolicy: Delete
   forProvider:
     project: open-targets-eu-dev
     zone: europe-west1-d
     type: pd-balanced
-    image: projects/open-targets-eu-dev/global/images/posdevpf-20240604-1515-es
+    image: projects/open-targets-eu-dev/global/images/posdevpf-20240704-0748-es

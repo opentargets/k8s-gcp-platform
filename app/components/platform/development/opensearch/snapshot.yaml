@@ -1,8 +1,8 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: opensearch
+  name: d676e16a40d19c7b-snapshot
 spec:
   volumeSnapshotClassName: data-backend
   source:
-    persistentVolumeClaimName: opensearch
+    persistentVolumeClaimName: d676e16a40d19c7b-pvc
