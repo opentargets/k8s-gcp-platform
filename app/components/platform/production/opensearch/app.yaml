@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: d676e16a40d19c7b-app
+  labels:
+    app: opensearch
+    tier: backend
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: production
+    stack: opensearch
+spec:
+  serviceName: opensearch
+  replicas: 3
+  selector:
+    matchLabels:
+      app: opensearch
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: opensearch
+        tier: backend
+        team: open-targets
+        subteam: backend
+        product: platform
+        environment: production
+        stack: opensearch
+    spec:
+      containers:
+        - name: opensearch
+          image: opensearchproject/opensearch:2.10.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9200
+              name: os-port-b
+            - containerPort: 9300
+              name: os-port-a
+          env:
+            - name: cluster.name
+              value: "ot-platform"
+            - name: discovery.type
+              value: "single-node"
+            - name: discovery.seed_hosts
+              value: "[]"
+            - name: bootstrap.memory_lock
+              value: "true"
+            - name: search.max_open_scroll_context
+              value: "5000"
+            - name: DISABLE_SECURITY_PLUGIN
+              value: "true"
+            - name: logger.level
+              value: "DEBUG"
+            - name: OPENSEARCH_JAVA_OPTS
+              value: "-Xms2g -Xmx4g"
+          volumeMounts:
+            - name: data-vol
+              subPath: data
+              mountPath: /usr/share/opensearch/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data-vol
+        labels:
+          app: opensearch
+          tier: storage
+          team: open-targets
+          subteam: backend
+          product: platform
+          environment: production
+          stack: opensearch
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 128Gi
+        dataSource:
+          kind: VolumeSnapshot
+          name: d676e16a40d19c7b-snapshot
+          apiGroup: snapshot.storage.k8s.io
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Retain
