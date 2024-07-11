@@ -6,6 +6,10 @@ metadata:
     app: clickhouse
     tier: storage
     stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   storageClassName: data-backend
   volumeName: 58242f87fd738ab2-pv
