@@ -2,6 +2,14 @@ apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
   name: 58242f87fd738ab2-snapshot
+  labels:
+    app: clickhouse
+    tier: storage
+    stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: development
 spec:
   volumeSnapshotClassName: data-backend
   source:
