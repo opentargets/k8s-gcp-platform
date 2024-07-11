@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: 58242f87fd738ab2-app
+  labels:
+    app: clickhouse
+    tier: backend
+    stack: clickhouse
+    team: open-targets
+    subteam: backend
+    product: platform
+    environment: staging
+spec:
+  serviceName: clickhouse
+  replicas: 3
+  selector:
+    matchLabels:
+      app: clickhouse
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+        tier: backend
+        stack: clickhouse
+        team: open-targets
+        subteam: backend
+        product: platform
+        environment: staging
+    spec:
+      # This allowance here is a hack to allow for the new cluster to be created before the old one is deleted
+      terminationGracePeriodSeconds: 360
+      containers:
+        - name: clickhouse
+          image: clickhouse/clickhouse-server:23.3.1.2823
+          imagePullPolicy: Always
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "echo 'Artifial termination delay...'; sleep 300"]
+          ports:
+            - containerPort: 8123
+              name: ch-port-b
+            - containerPort: 9000
+              name: ch-port-a
+          volumeMounts:
+            - name: data-ch
+              mountPath: /data_volume
+            - name: data-ch
+              subPath: data
+              mountPath: /var/lib/clickhouse
+            - name: data-ch
+              subPath: users.d
+              mountPath: /etc/clickhouse-server/users.d
+            - name: data-ch
+              subPath: config.d
+              mountPath: /etc/clickhouse-server/config.d
+  volumeClaimTemplates:
+    - metadata:
+        name: data-ch
+        labels:
+          app: clickhouse
+          tier: storage
+          stack: clickhouse
+          team: open-targets
+          subteam: backend
+          product: platform
+          environment: staging
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 64Gi
+        dataSource:
+          kind: VolumeSnapshot
+          name: 58242f87fd738ab2-snapshot
+          apiGroup: snapshot.storage.k8s.io
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Retain
