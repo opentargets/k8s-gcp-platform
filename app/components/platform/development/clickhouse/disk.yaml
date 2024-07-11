@@ -9,11 +9,11 @@ metadata:
     product: platform
     environment: development
     stack: clickhouse
-  name: f2cfe71af1f79fda-disk
+  name: 58242f87fd738ab2-disk
 spec:
   deletionPolicy: Delete
   forProvider:
     project: open-targets-eu-dev
     zone: europe-west1-d
     type: pd-balanced
-    image: projects/open-targets-eu-dev/global/images/posdevpf-20240604-1515-ch
+    image: projects/open-targets-eu-dev/global/images/posdevpf-20240709-1109-ch

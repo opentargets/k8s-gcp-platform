@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: f2cfe71af1f79fda-pvc
+  name: 58242f87fd738ab2-pvc
   labels:
     app: clickhouse
     tier: storage
     stack: clickhouse
 spec:
   storageClassName: data-backend
-  volumeName: f2cfe71af1f79fda-pv
+  volumeName: 58242f87fd738ab2-pv
   accessModes:
     - ReadWriteOnce
   resources:
