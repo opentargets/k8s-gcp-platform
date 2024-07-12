@@ -1,0 +1,15 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: platform
+  labels:
+    tier: external
+    team: open-targets
+    subteam: backend
+    product: platform
+spec:
+  domains:
+    - platform.production.k8s.opentargets.xyz
+    - api.platform.production.k8s.opentargets.xyz
+    - ai.platform.production.k8s.opentargets.xyz
+    - www.platform.production.k8s.opentargets.xyz
