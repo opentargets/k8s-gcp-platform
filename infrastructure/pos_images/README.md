@@ -1,2 +1,0 @@
-# POS Images Manager
-This is an exocluster component that manages GCE disks, used by the cluster as the backend storage for the PVCs Open Targets Platform plugs into Open Search and Clickhouse data backends.
