@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: platform
+  labels:
+    tier: external
+    team: open-targets
+    subteam: backend
+    product: platform
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: platform
+    networking.gke.io/v1beta1.FrontendConfig: platform
+spec:
+  defaultBackend:
+    service:
+      name: ext-web
+      port:
+        number: 80
+  rules:
+    - host: api.platform.production.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ext-graphqlapi
+                port:
+                  number: 80
+    - host: ai.platform.production.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ext-openaiapi
+                port:
+                  number: 80
+    - host: platform.production.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ext-web
+                port:
+                  number: 80
+    - host: www.platform.production.k8s.opentargets.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ext-web
+                port:
+                  number: 80
