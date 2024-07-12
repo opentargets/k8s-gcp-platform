@@ -1,0 +1,12 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: httpredirect
+  labels:
+    tier: external
+    team: open-targets
+    subteam: backend
+    product: platform
+spec:
+  redirectToHttps:
+    enabled: true
