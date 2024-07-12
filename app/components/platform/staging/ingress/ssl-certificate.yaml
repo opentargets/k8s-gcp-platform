@@ -1,0 +1,15 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: platform
+  labels:
+    tier: external
+    team: open-targets
+    subteam: backend
+    product: platform
+spec:
+  domains:
+    - platform.staging.k8s.opentargets.xyz
+    - api.platform.staging.k8s.opentargets.xyz
+    - ai.platform.staging.k8s.opentargets.xyz
+    - www.platform.staging.k8s.opentargets.xyz
