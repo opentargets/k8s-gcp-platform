@@ -7,4 +7,3 @@ resources:
 components:
   #- ../../../components/platform/development/clickhouse
   #- ../../../components/platform/development/opensearch
-  #- ../../../components/https-ingress
