@@ -9,5 +9,5 @@ components:
   - ../../../components/platform/development/clickhouse
   - ../../../components/platform/development/opensearch
   # Ingress
-  - ../../../components/https-redirect
-  - ../../../components/platform/development/ingress
+  #- ../../../components/https-redirect
+  #- ../../../components/platform/development/ingress
