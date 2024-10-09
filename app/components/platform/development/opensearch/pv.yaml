@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: d676e16a40d19c7b-pv
+  name: ot0427430d062ce7-pv
   labels:
     app: opensearch
     tier: storage
@@ -18,5 +18,5 @@ spec:
     - ReadWriteOnce
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/d676e16a40d19c7b-disk
+    volumeHandle: projects/open-targets-eu-dev/zones/europe-west1-d/disks/ot0427430d062ce7-disk
     fsType: ext4

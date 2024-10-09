@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: d676e16a40d19c7b-pvc
+  name: ot0427430d062ce7-pvc
   labels:
     app: opensearch
     tier: storage
@@ -12,7 +12,7 @@ metadata:
     environment: development
 spec:
   storageClassName: data-backend
-  volumeName: d676e16a40d19c7b-pv
+  volumeName: ot0427430d062ce7-pv
   accessModes:
     - ReadWriteOnce
   resources:

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: d676e16a40d19c7b-app
+  name: ot0427430d062ce7-app
   labels:
     app: opensearch
     tier: backend
@@ -76,7 +76,7 @@ spec:
             storage: 128Gi
         dataSource:
           kind: VolumeSnapshot
-          name: d676e16a40d19c7b-snapshot
+          name: ot0427430d062ce7-snapshot
           apiGroup: snapshot.storage.k8s.io
   persistentVolumeClaimRetentionPolicy:
     whenDeleted: Delete

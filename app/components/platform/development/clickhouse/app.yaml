@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: 58242f87fd738ab2-app
+  name: ot22d60262e735d8-app
   labels:
     app: clickhouse
     tier: backend
@@ -73,7 +73,7 @@ spec:
             storage: 64Gi
         dataSource:
           kind: VolumeSnapshot
-          name: 58242f87fd738ab2-snapshot
+          name: ot22d60262e735d8-snapshot
           apiGroup: snapshot.storage.k8s.io
   persistentVolumeClaimRetentionPolicy:
     whenDeleted: Delete

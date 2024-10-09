@@ -1,7 +1,7 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: 58242f87fd738ab2-snapshot
+  name: ot22d60262e735d8-snapshot
   labels:
     app: clickhouse
     tier: storage
@@ -13,4 +13,4 @@ metadata:
 spec:
   volumeSnapshotClassName: data-backend
   source:
-    persistentVolumeClaimName: 58242f87fd738ab2-pvc
+    persistentVolumeClaimName: ot22d60262e735d8-pvc
