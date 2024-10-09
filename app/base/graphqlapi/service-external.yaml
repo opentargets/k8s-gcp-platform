@@ -5,6 +5,9 @@ metadata:
   labels:
     app: graphqlapi
     tier: external
+    team: open-targets
+    subteam: backend
+    product: platform
 spec:
   ports:
   - port: 80
