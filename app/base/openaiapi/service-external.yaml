@@ -5,6 +5,9 @@ metadata:
   labels:
     app: openaiapi
     tier: external
+    team: open-targets
+    subteam: frontend
+    product: platform
 spec:
   ports:
   - port: 80
