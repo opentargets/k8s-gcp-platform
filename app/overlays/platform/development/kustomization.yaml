@@ -6,7 +6,8 @@ resources:
 
 components:
   # Data backends
-  #- ../../../components/platform/development/clickhouse
-  #- ../../../components/platform/development/opensearch
+  - ../../../components/platform/development/clickhouse
+  - ../../../components/platform/development/opensearch
   # Ingress
-  #- ../../../components/platform/development/ingress
+  - ../../../components/https-redirect
+  - ../../../components/platform/development/ingress
