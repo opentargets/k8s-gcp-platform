@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    app: web-service
+    tier: frontend
+    team: open-targets
+    subteam: frontend
+    product: platform
+spec:
+  selector:
+    app: web-platform
+    tier: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: web-port
+    name: web-port-svc
