@@ -39,8 +39,18 @@ generate_unique_id() {
         hash=$(printf "%032x" $hash)  # Convert to 32-character hex
     fi
     
-    # Take the first 32 characters of the hash
-    echo "${hash:0:16}"
+    # Take the first 14 characters of the sanitized hash
+    local unique_id="${hash:0:14}"
+    
+    # If the length of the unique_id is 14 or more, truncate it
+    if [ ${#unique_id} -ge 14 ]; then
+        unique_id="${unique_id:0:14}"
+    fi
+    
+    # Append a letter to the beginning
+    unique_id="ot${unique_id}"
+    
+    echo "$unique_id"
 }
 
 # Check if required arguments are provided
