@@ -5,6 +5,9 @@ metadata:
   labels:
     app: openaiapi
     tier: backend
+    team: open-targets
+    subteam: frontend
+    product: platform
 spec:
   selector:
     app: openaiapi
