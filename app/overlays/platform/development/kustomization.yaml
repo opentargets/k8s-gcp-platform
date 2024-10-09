@@ -5,5 +5,8 @@ resources:
   - ../../../base
 
 components:
+  # Data backends
   #- ../../../components/platform/development/clickhouse
   #- ../../../components/platform/development/opensearch
+  # Ingress
+  #- ../../../components/platform/development/ingress
