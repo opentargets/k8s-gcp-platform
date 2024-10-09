@@ -5,6 +5,9 @@ metadata:
   labels:
     app: graphqlapi
     tier: backend
+    team: open-targets
+    subteam: backend
+    product: platform
 spec:
   selector:
     app: graphqlapi
