@@ -45,7 +45,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ext-web
+                name: web-platform-external
                 port:
                   number: 80
     - host: www.platform.dev.k8s.opentargets.xyz
