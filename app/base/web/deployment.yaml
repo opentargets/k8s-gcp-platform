@@ -13,6 +13,14 @@ spec:
   selector:
     matchLabels:
       app: web-platform
+  template:
+    spec:
+      nodeSelector:
+        node_type: worker
+      tolerations:
+      - key: "spot"
+        value: "true"
+        effect: "PreferNoSchedule"
       tier: frontend
   template:
     metadata:

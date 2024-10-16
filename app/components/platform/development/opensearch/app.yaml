@@ -28,6 +28,13 @@ spec:
         environment: development
         stack: opensearch
     spec:
+      nodeSelector:
+        node_type: worker
+      tolerations:
+      - key: "spot"
+        value: "true"
+        effect: "PreferNoSchedule"
+      terminationGracePeriodSeconds: 360
       containers:
         - name: opensearch
           image: opensearchproject/opensearch:2.10.0

@@ -29,6 +29,12 @@ spec:
         environment: development
     spec:
       # This allowance here is a hack to allow for the new cluster to be created before the old one is deleted
+      nodeSelector:
+        node_type: worker
+      tolerations:
+      - key: "spot"
+        value: "true"
+        effect: "PreferNoSchedule"
       terminationGracePeriodSeconds: 360
       containers:
         - name: clickhouse

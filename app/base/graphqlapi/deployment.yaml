@@ -23,6 +23,12 @@ spec:
         subteam: backend
         product: platform
     spec:
+      nodeSelector:
+        node_type: worker
+      tolerations:
+      - key: "spot"
+        value: "true"
+        effect: "PreferNoSchedule"
       containers:
       - name: graphqlapi
         image: quay.io/opentargets/platform-api:24.1.0-dev.6

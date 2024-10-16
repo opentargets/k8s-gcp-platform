@@ -23,6 +23,12 @@ spec:
         subteam: backend
         product: platform
     spec:
+      nodeSelector:
+        node_type: worker
+      tolerations:
+      - key: "spot"
+        value: "true"
+        effect: "PreferNoSchedule"
       containers:
       - name: openaiapi
         image: quay.io/opentargets/ot-ai-api:0.0.10
