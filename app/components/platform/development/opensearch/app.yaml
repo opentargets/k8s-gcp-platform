@@ -28,6 +28,17 @@ spec:
         environment: development
         stack: opensearch
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - opensearch
+            topologyKey: kubernetes.io/hostname
+            weight: 40
       resources:
         requests:
           cpu: 1000m
