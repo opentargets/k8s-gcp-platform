@@ -21,7 +21,6 @@ spec:
         team: open-targets
         subteam: backend
         product: platform
-      tier: frontend
     spec:
       nodeSelector:
         node_type: worker
