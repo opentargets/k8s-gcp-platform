@@ -22,6 +22,17 @@ spec:
         subteam: backend
         product: platform
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web-platform
+            topologyKey: kubernetes.io/hostname
+            weight: 10
       resources:
         requests:
           cpu: 100m
