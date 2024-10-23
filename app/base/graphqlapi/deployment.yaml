@@ -23,6 +23,10 @@ spec:
         subteam: backend
         product: platform
     spec:
+      resources:
+        requests:
+          cpu: 400m
+          memory: 2Gi
       nodeSelector:
         node_type: worker
       tolerations:
