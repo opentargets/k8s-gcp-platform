@@ -28,6 +28,10 @@ spec:
         environment: development
         stack: opensearch
     spec:
+      resources:
+        requests:
+          cpu: 1000m
+          memory: 4Gi
       nodeSelector:
         node_type: worker
       tolerations:
