@@ -28,13 +28,17 @@ spec:
         product: platform
         environment: development
     spec:
-      # This allowance here is a hack to allow for the new cluster to be created before the old one is deleted
+      resources:
+        requests:
+          cpu: 800m
+          memory: 3Gi
       nodeSelector:
         node_type: worker
       tolerations:
       - key: "spot"
         value: "true"
         effect: "PreferNoSchedule"
+      # This allowance here is a hack to allow for the new cluster to be created before the old one is deleted
       terminationGracePeriodSeconds: 360
       containers:
         - name: clickhouse
